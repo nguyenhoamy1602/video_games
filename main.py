@@ -33,7 +33,6 @@ def pivot():
             table = pd.pivot_table(df, index=[str(cat1), str(cat2)], values=["NA_Sales","EU_Sales", "JP_Sales", "Other_Sales", "Global_Sales"], aggfunc=[np.sum])
         else:
             table = pd.pivot_table(df,index=[str(cat1),str(cat2)], values=[str(aggr)],aggfunc=[np.sum] )
-        print table
     return render_template("pivot.html", table=table.to_html())
 
 
