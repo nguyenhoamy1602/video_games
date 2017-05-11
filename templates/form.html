@@ -43,7 +43,7 @@
       <div class="row">
         <form name="Item_1" action="/pivot" method='POST'>
             <div class="col-md-3">
-                Select a Categorical Attribute
+                Select Row
                 <br>
                 <select name="cat1">
                   <option >Platform</option>
@@ -53,7 +53,7 @@
                 </select>
             </div>
               <div class="col-md-3">
-                Select another Categorical Attribute:
+                Select Column:
                   <br>
                  <select name="cat2">
                   <option>Platform</option>
@@ -64,9 +64,9 @@
 
             </div>
                <div class="col-md-3">
-                Select an aggregated value:
+                Select an filter:
                 <br>
-                   <select name="aggr">
+                   <select name="filter">
                   <option value="NA_Sales">North America</option>
                   <option value="EU_Sales" >Europe</option>
                   <option value="JP_Sales">Japan</option>
@@ -76,12 +76,14 @@
                 </select>
             </div>
                <div class="col-md-3">
-                Filter by:
+                Aggregate Method:
                 <br>
-                   <select name="filter">
-                  <option>Ascending</option>
-                  <option>Descending</option>
-                  <option>Ranking</option>
+                   <select name="aggr">
+                  <option value="count">Count</option>
+                  <option value="sum">Sum</option>
+                  <option value="avg">Average</option>
+                  <option value="min">Minimum</option>
+                  <option value="max">Maximum</option>
                 </select>
             </div>
             <input type="submit" value="Submit">
