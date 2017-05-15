@@ -7,7 +7,7 @@ Created on Wed May 10 10:14:54 2017
 
 # Import all libraries needed for the tutorial
 # Import all libraries needed for the tutorial
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect, url_for
 import pandas as pd
 import numpy as np
 
@@ -19,7 +19,7 @@ aggFunctions = {'count':np.count_nonzero, 'sum':np.sum, 'avg':np.mean,
 
 @app.route('/')
 def index():
-    return 'This is the homepage'
+    return render_template("home.html")
 
 @app.route('/form')
 def form():
