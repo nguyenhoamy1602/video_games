@@ -2,7 +2,7 @@
 """
 Created on Wed May 10 10:14:54 2017
 
-@author: melod
+@author: Melody Chai, My Ngyuen, Alex Sosin
 """
 
 # Import all libraries needed for the tutorial
