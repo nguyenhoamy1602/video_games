@@ -13,7 +13,9 @@ import numpy as np
 import csv
 
 app = Flask(__name__)
-df = pd.read_csv("Data/tinyvgxls.csv")
+
+iter_csv = pd.read_csv('Data/vgsales.csv', iterator=True, chunksize=1000)
+df = pd.concat([chunk[chunk['Year'] >= 2000] for chunk in iter_csv])
 
 aggFunctions = {'count':np.count_nonzero, 'sum':np.sum, 'avg':np.mean,
             'min':np.min, 'max':np.max, 'med':np.median}
