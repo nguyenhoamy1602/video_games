@@ -68,14 +68,14 @@ def sortby():
 
 @app.route("/chart")
 def bubble_chart():
-    Publishers = execute_query("SELECT distinct Genre from videogame order by Genre asc")
+    Genres = execute_query("SELECT distinct Genre from videogame order by Genre asc")
     series = []
-    for Publisher in Publishers:
+    for Genre in Genres:
         data = []
-        videogames = execute_query("SELECT * from videogame where Genre = ? and Year IS NOT \"N/A\"", (Publisher[0],))
+        videogames = execute_query("SELECT * from videogame where Genre = ? and Year IS NOT \"N/A\"", (Genre[0],))
         for videogame in videogames:
-            data.append({ 'name': videogame['Name'], 'y': videogame['Global_Sales'], 'x': videogame['Year'], 'z': videogame['Global_Sales']})
-        series.append({ 'name': Publisher[0], 'data': data })
+            data.append({ 'name': videogame['Name'], 'publisher': videogame['Publisher'], 'y': videogame['Global_Sales'], 'x': videogame['Year'], 'z': videogame['Global_Sales']})
+        series.append({ 'name': Genre[0], 'data': data })
     return render_template("bubble.html", series = json.dumps(series))
 
 if __name__ == '__main__':

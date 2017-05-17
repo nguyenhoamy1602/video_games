@@ -23,20 +23,16 @@ Highcharts.chart('container', {
     },
 
     title: {
-        text: 'Sugar and fat intake per country'
-    },
-
-    subtitle: {
-        text: 'Source: <a href="http://www.euromonitor.com/">Euromonitor</a> and <a href="https://data.oecd.org/">OECD</a>'
+        text: "Video Game's Sales and Year Released"
     },
 
     tooltip: {
         useHTML: true,
         headerFormat: '<table>',
         pointFormat: '<tr><th colspan="2"><h3>{point.name}</h3></th></tr>' +
-            '<tr><th>Fat intake:</th><td>{point.x}g</td></tr>' +
-            '<tr><th>Sugar intake:</th><td>{point.y}g</td></tr>' +
-            '<tr><th>Obesity (adults):</th><td>{point.z}%</td></tr>',
+            '<tr><th>Publisher:</th><td>{point.publisher}</td></tr>' +
+            '<tr><th>Year:</th><td>{point.x}</td></tr>' +
+            '<tr><th>Sale(million):</th><td>{point.y}</td></tr>',
         footerFormat: '</table>',
         followPointer: true
     },
