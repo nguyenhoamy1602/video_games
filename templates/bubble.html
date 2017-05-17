@@ -1,0 +1,58 @@
+
+<html>
+<head>
+<title>Highcharts Tutorial</title>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+   <script src="https://code.highcharts.com/highcharts.js"></script>
+   <script src="https://code.highcharts.com/highcharts-more.js"></script>
+</head>
+<body>
+<div id="container" style="width: 90%; height: 90%; margin: 0 auto"></div>
+<script language="JavaScript">
+
+Highcharts.chart('container', {
+
+    chart: {
+        type: 'bubble',
+        plotBorderWidth: 1,
+        zoomType: 'xy'
+    },
+
+    legend: {
+        enabled: true,
+    },
+
+    title: {
+        text: 'Sugar and fat intake per country'
+    },
+
+    subtitle: {
+        text: 'Source: <a href="http://www.euromonitor.com/">Euromonitor</a> and <a href="https://data.oecd.org/">OECD</a>'
+    },
+
+    tooltip: {
+        useHTML: true,
+        headerFormat: '<table>',
+        pointFormat: '<tr><th colspan="2"><h3>{point.name}</h3></th></tr>' +
+            '<tr><th>Fat intake:</th><td>{point.x}g</td></tr>' +
+            '<tr><th>Sugar intake:</th><td>{point.y}g</td></tr>' +
+            '<tr><th>Obesity (adults):</th><td>{point.z}%</td></tr>',
+        footerFormat: '</table>',
+        followPointer: true
+    },
+
+    plotOptions: {
+        series: {
+            dataLabels: {
+                enabled: true,
+                format: '{point.name}'
+            }
+        }
+    },
+
+    series: {{series | safe}}
+
+});
+</script>
+</body>
+</html>
