@@ -14,7 +14,7 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/heatmap.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
-
+    <link rel="stylesheet" href="../static/pivot.css">
 
     <title>Results</title>
     <nav class="navbar navbar-default">
@@ -46,83 +46,69 @@
 <body>
     <div id='content' class='row-fluid'>
         <div class="row">
-             <div class="col-md-8">
+             <div class="col-md-12">
                  <h1>Your Table results</h1>
              </div>
         </div>
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-10">
-               <div id="container" style="height:100%; width:100%; " ></div>
+               <div id="container" style="width:100%;" ></div>
                 <script>
-
                         Highcharts.chart('container', {
-
                             chart: {
                                 type: 'heatmap',
                                 marginTop: 40,
                                 marginBottom: 100,
                                 plotBorderWidth: 1,
-                                height: {{yLength|safe}}
+                                height: {{yLength|safe}},
+                                width: {{xLength|safe}}
                             },
-
-
                             title: {
                                 text: '{{aggr|safe}} {{filter|safe}} (in millions) for {{row|safe}} and {{col |safe}}'
                             },
-
                             xAxis: {
                                 categories: {{x|safe}},
                                 title: {
                                     text: '{{row|safe}}'
                                 }
-
                             },
-
                             yAxis: {
                                 categories: {{y|safe}},
                                 title: {
                                     text: '{{col|safe}}'
                                 }
-
                             },
-
                             colorAxis: {
-                                min: 0,
+                                min: null,
                                 minColor: '#FFFFFF',
                                 maxColor: Highcharts.getOptions().colors[0]
                             },
-
                             legend: {
                                 align: 'right',
                                 layout: 'vertical',
-                                margin: 0,
+                                margin: 10,
                                 verticalAlign: 'top',
-                                y: 25,
-                                symbolHeight: 280
+                                y: 20,
+                                symbolHeight: {{yLength|safe}}/2
                             },
-
                             tooltip: {
                                 formatter: function () {
                                     return '<b>' + this.series.xAxis.categories[this.point.x] + '</b> sold <br><b>' +
                                         this.point.value + '</b> , in millons, on  <br><b>' + this.series.yAxis.categories[this.point.y] + '</b>';
                                 }
                             },
-
                             series: [{
                                 name: '',
+                                turboThreshold: 100000,
                                 borderWidth: 1,
                                 data: {{v|safe}},
                                 dataLabels: {
                                     enabled: true,
                                     color: '#000000'
                                 }
-
                             }]
-
                         });
-
-
                 </script>
             </div>
             <div class="col-md-1"></div>

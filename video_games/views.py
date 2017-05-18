@@ -11,11 +11,11 @@ from flask import Flask, request, render_template, redirect, url_for
 import pandas as pd
 import numpy as np
 import csv
+import json
 
-app = Flask(__name__)
+from video_games import app, database, convert
 
-iter_csv = pd.read_csv('Data/vgsales.csv', iterator=True, chunksize=1000)
-df = pd.concat([chunk[chunk['Year'] >= 2000] for chunk in iter_csv])
+df = pd.read_csv('Data/vgsales.csv', nrows=1000)
 
 aggFunctions = {'count':np.count_nonzero, 'sum':np.sum, 'avg':np.mean,
             'min':np.min, 'max':np.max, 'med':np.median}
@@ -28,6 +28,11 @@ aggLabels = {'count': 'Counting', 'sum': 'Sum of', 'avg': 'Average of',
 @app.route('/')
 def index():
     return render_template("home.html")
+
+@app.route("/data")
+def data():
+    videogames = database.query_db("""SELECT * FROM videogame""")
+    return render_template("data.html", videogames=videogames)
 
 @app.route('/form')
 def form():
@@ -48,56 +53,23 @@ def pivot():
             table = pd.pivot_table(df,index=[str(cat1)], columns=[str(cat2)], values=[str(filter)],
                                    aggfunc=aggFunctions[aggr], fill_value="" )
 
-    xLabel, yLabel, value = convertCSVFormat(table.to_csv(), cat1, cat2)
+    xLabel, yLabel, value = convert.convertCSVFormat(table.to_csv(), cat1, cat2)
     height = len(yLabel)*35
     width = len(xLabel)*40
     return render_template("pivot.html", x =xLabel,y=yLabel,v=value, yLength = height, xLength = width, row = str(cat1),
                            col=str(cat2),aggr= aggLabels[aggr], filter =filterLabels[filter] )
 
-
-def convertCSVFormat(file, cat1, cat2):
-    lines = file.split('\n')
-    aggr = True
-    value = True
-    yLabels = []
-    xLabels = []
-    values = []
-    x = 0
-    for line in lines:
-        items = line.split(',')
-        if aggr:
-            aggr = False
-        else:
-            if value:
-                value = False
-                for item in items[1:]:
-                    if str(cat2) == 'Year':
-                        item = int(float(item))
-                        yLabels.append(str(item))
-                    else:
-                        yLabels.append(item)
-            else:
-                if str(cat1) == 'Year' and cat1 != items[0]:
-                    try:
-                        item = int(float(items[0]))
-                        xLabels.append(str(item))
-                    except ValueError:
-                        xLabels.append(items[0])
-                elif cat1 != items[0]:
-                    xLabels.append(items[0])
-                y = 0
-                if cat1 != items[0]:
-                    for item in items[1:]:
-                        try:
-                            item = float(item)
-                            values.append([x, y, round(item,2)])
-                        except ValueError:
-                            values.append([x, y, 0])
-                        y += 1
-                    x += 1
-
-
-    return(xLabels, yLabels, values)
+@app.route("/chart")
+def bubble_chart():
+    Genres = database.execute_query("SELECT distinct Genre from videogame order by Genre asc")
+    series = []
+    for Genre in Genres:
+        data = []
+        videogames = database.execute_query("SELECT * from videogame where Genre = ? and Year IS NOT \"N/A\"", (Genre[0],))
+        for videogame in videogames:
+            data.append({ 'name': videogame['Name'], 'publisher': videogame['Publisher'], 'y': videogame['Global_Sales'], 'x': videogame['Year'], 'z': videogame['Global_Sales']})
+        series.append({ 'name': Genre[0], 'data': data })
+    return render_template("bubble.html", series = json.dumps(series))
 
 
 if __name__ == "__main__":
