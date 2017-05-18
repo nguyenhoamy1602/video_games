@@ -55,7 +55,9 @@
             <div class="col-md-10">
                <div id="container" style="width:100%;" ></div>
                 <script>
+
                         Highcharts.chart('container', {
+
                             chart: {
                                 type: 'heatmap',
                                 marginTop: 40,
@@ -64,26 +66,34 @@
                                 height: {{yLength|safe}},
                                 width: {{xLength|safe}}
                             },
+
+
                             title: {
                                 text: '{{aggr|safe}} {{filter|safe}} (in millions) for {{row|safe}} and {{col |safe}}'
                             },
+
                             xAxis: {
                                 categories: {{x|safe}},
                                 title: {
                                     text: '{{row|safe}}'
                                 }
+
                             },
+
                             yAxis: {
                                 categories: {{y|safe}},
                                 title: {
                                     text: '{{col|safe}}'
                                 }
+
                             },
+
                             colorAxis: {
                                 min: null,
                                 minColor: '#FFFFFF',
                                 maxColor: Highcharts.getOptions().colors[0]
                             },
+
                             legend: {
                                 align: 'right',
                                 layout: 'vertical',
@@ -92,12 +102,14 @@
                                 y: 20,
                                 symbolHeight: {{yLength|safe}}/2
                             },
+
                             tooltip: {
                                 formatter: function () {
                                     return '<b>' + this.series.xAxis.categories[this.point.x] + '</b> sold <br><b>' +
                                         this.point.value + '</b> , in millons, on  <br><b>' + this.series.yAxis.categories[this.point.y] + '</b>';
                                 }
                             },
+
                             series: [{
                                 name: '',
                                 turboThreshold: 100000,
@@ -107,8 +119,12 @@
                                     enabled: true,
                                     color: '#000000'
                                 }
+
                             }]
+
                         });
+
+
                 </script>
             </div>
             <div class="col-md-1"></div>
