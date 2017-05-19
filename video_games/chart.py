@@ -24,6 +24,7 @@ def chart1(df):
     return plot_url
 
 def chart2(df):
+    table = pd.pivot_table(df, values='Global_Sales')
     img = StringIO.StringIO()
 
     platGenre = pd.crosstab(df.Platform, df.Genre)
