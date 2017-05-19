@@ -13,9 +13,9 @@ import numpy as np
 import csv
 import json
 
-from video_games import app, database, convert
+from video_games import app, database, convert, chart
 
-df = pd.read_csv('Data/vgsales.csv', nrows=1000)
+df = pd.read_csv('Data/vgsales.csv', nrows=1001)
 
 aggFunctions = {'count':np.count_nonzero, 'sum':np.sum, 'avg':np.mean,
             'min':np.min, 'max':np.max, 'med':np.median}
@@ -30,7 +30,7 @@ def index():
 
 @app.route("/data")
 def data():
-    videogames = database.query_db("""SELECT * FROM videogame""")
+    videogames = database.execute_query("""SELECT * FROM videogame""")
     return render_template("data.html", videogames=videogames)
 
 @app.route('/form')
@@ -67,7 +67,7 @@ def pivot():
     return render_template("pivot.html", x =xLabel,y=yLabel,v=values, yLength = height, xLength = width, row = str(cat1),
                            col=str(cat2),aggr= aggLabels[aggr], filter =valueLabels[value] )
 
-@app.route("/chart")
+@app.route('/bubblechart')
 def bubble_chart():
     Genres = database.execute_query("SELECT distinct Genre from videogame order by Genre asc")
     series = []
@@ -75,9 +75,22 @@ def bubble_chart():
         data = []
         videogames = database.execute_query("SELECT * from videogame where Genre = ? and Year IS NOT \"N/A\"", (Genre[0],))
         for videogame in videogames:
-            data.append({ 'name': videogame['Name'], 'publisher': videogame['Publisher'], 'y': videogame['Global_Sales'], 'x': videogame['Year'], 'z': videogame['Global_Sales']})
+            data.append(
+                { 'name': videogame['Name'], 
+                'publisher': videogame['Publisher'], 
+                'y': videogame['Global_Sales'], 
+                'x': videogame['Year'], 
+                'z': videogame['Global_Sales'],
+                'genre': videogame['Genre']})
         series.append({ 'name': Genre[0], 'data': data })
     return render_template("bubble.html", series = json.dumps(series))
+
+
+@app.route('/visualisation')
+def visual():
+    plot_url = chart.chart1(df)
+
+    return render_template('visualisation.html', plot_url=plot_url)
 
 
 if __name__ == "__main__":
