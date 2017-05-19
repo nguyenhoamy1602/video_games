@@ -13,10 +13,15 @@
               <th>Rank</th>
               <th>Name</th>
               <th>Platform</th>
-              <th class="right">Year</th>
+              <th>Year</th>
+              
               <th class="right">Genre</th>
               <th class="right">Publisher</th>
-              <th class="right">Global_Sales</th>
+              <th class="right">North America Sales</th>
+              <th class="right">Europe Sales</th>
+              <th class="right">Japan Sales</th>
+              <th class="right">Other Sales</th>
+              <th class="right">Global Sales</th>
             </thead>
             <tbody>
               {% for videogame in videogames %}
@@ -24,9 +29,14 @@
                 <td>{{ videogame['Rank']}}</td>
                 <td>{{ videogame['Name']}}</td>
                 <td>{{ videogame['Platform'] }}</td>
-                <td class="right">{{ videogame['Year'] }}</td>
+                <td>{{ videogame['Year'] }}</td>
+
                 <td class="right">{{ videogame['Genre'] }}</td>
                 <td class="right">{{ videogame['Publisher'] }}</td>
+                <td class="right">{{ videogame['NA_Sales'] }}</td>
+                <td class="right">{{ videogame['EU_Sales'] }}</td>
+                <td class="right">{{ videogame['Japan_Sales'] }}</td>
+                <td class="right">{{ videogame['Other_Sales'] }}</td>
                 <td class="right">{{ videogame['Global_Sales'] }}</td>
               </tr>
               {% endfor %}
