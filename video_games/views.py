@@ -15,7 +15,7 @@ import json
 
 from video_games import app, database, convert, chart
 
-df = pd.read_csv('Data/vgsales.csv', nrows=1001)
+df = pd.read_csv('Data/vgsales.csv')
 
 aggFunctions = {'count':np.count_nonzero, 'sum':np.sum, 'avg':np.mean,
             'min':np.min, 'max':np.max, 'med':np.median}
