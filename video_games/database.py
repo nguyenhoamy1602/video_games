@@ -17,7 +17,7 @@ def create_database():
         Genre text, Publisher text, NA_Sales float, EU_Sales float,
         JP_Sales float,Other_Sales float, Global_Sales float)""")
 
-    with open('Data/vgsales.csv', 'r') as f:
+    with open('Data/vgsales2.csv', 'r') as f:
         reader = csv.reader(f.readlines()[1:1000])  # exclude header line
     cur.executemany("""INSERT INTO videogame VALUES (?,?,?,?,?,?,?,?,?,?,?)""",
         (row for row in reader))
