@@ -1,0 +1,10 @@
+@font-face {
+    font-family: Arcade;
+    src: url("fonts/ARCADECLASSIC.TTF") format("truetype");
+}
+
+body {  
+    background-image: url("img/background.png"); 
+    background-repeat:repeat;
+    text-color:white;
+} 

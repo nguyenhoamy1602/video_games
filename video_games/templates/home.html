@@ -4,17 +4,34 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../static/home.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
         <div class="row">
             <div class="col-sm-4">
+                <p style="margin-bottom:100px"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+            </div>
+            <div class="col-lg-4">
+                <h1 style="text-align:center; color:white;font-family:Arcade;font-size:500%">Video Game Sales</h1>
+                <h4 style="text-align:center; color:white;font-family:Arcade;font-size:200%">Throughout the ages</h4>
             </div>
             <div class="col-sm-4">
-                <h1>Welcome</h1>
-                <p>Please do some work Alex -_-</p>
-                <a href="{{ url_for('form') }}">Go to Pivot</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-4">
+                <div style="position:relative;top:100px; text-align:center"> 
+                <a type="button" href="{{ url_for('form') }}" class="btn-default btn-lg">Pivot Table</a>
+                <a style="position:relative;left:20px" type="button" href="{{ url_for('bubble_chart') }}" class="btn-default btn-lg">Visualisation</a>
+                </div>
             </div>
             <div class="col-sm-4">
             </div>
