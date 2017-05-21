@@ -15,7 +15,7 @@ import json
 
 from video_games import app, database, convert, chart
 
-df = pd.read_csv('Data/vgsales.csv', nrows=1001)
+df = pd.read_csv('Data/vgsales.csv')
 
 aggFunctions = { 'sum':np.sum, 'avg':np.mean,
             'min':np.min, 'max':np.max, 'med':np.median}
@@ -96,9 +96,12 @@ def bubble_chart():
 
 @app.route('/visualisation')
 def visual():
-    plot_url = chart.chart1(df)
+    x1,y1 = chart.chart1(df)
+    year,na_sale, eu_sale, jp_sale, other_sale, global_sale = chart.chart2(df)
 
-    return render_template('visualisation.html', plot_url=plot_url)
+    return render_template('visualisation.html', x1=x1,y1=y1,
+        year=year,na_sale=na_sale, eu_sale=eu_sale, jp_sale=jp_sale, 
+        other_sale=other_sale,global_sale=global_sale)
 
 
 if __name__ == "__main__":
