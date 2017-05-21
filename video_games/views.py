@@ -15,9 +15,9 @@ import json
 
 from video_games import app, database, convert, chart
 
-df = pd.read_csv('Data/vgsales.csv', nrows=1001)
+df = pd.read_csv('Data/vgsales.csv')
 
-aggFunctions = {'count':np.count_nonzero, 'sum':np.sum, 'avg':np.mean,
+aggFunctions = { 'sum':np.sum, 'avg':np.mean,
             'min':np.min, 'max':np.max, 'med':np.median}
 valueLabels = {'NA_Sales':'North America Sales', 'EU_Sales': 'Europe Sales', 'JP_Sales': 'Japan Sales',
                    'Other_Sales': 'Other Sales', 'Global_Sales':'Global Sales'}
@@ -62,8 +62,16 @@ def pivot():
 
 
     xLabel, yLabel, values = convert.convertCSVFormat(table.to_csv(), cat1, cat2)
-    height = len(yLabel)*40
-    width = len(xLabel)*60
+    if len(yLabel)==1:
+        height = 250
+        width = len(xLabel)*60
+    elif len(xLabel)==1:
+        height = len(yLabel)*40
+        width = 100
+    else:
+        height = len(yLabel)*40
+        width = len(xLabel)*60
+
     return render_template("pivot.html", x =xLabel,y=yLabel,v=values, yLength = height, xLength = width, row = str(cat1),
                            col=str(cat2),aggr= aggLabels[aggr], filter =valueLabels[value] )
 
