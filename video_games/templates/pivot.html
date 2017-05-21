@@ -69,7 +69,7 @@
 
 
                             title: {
-                                text: '{{aggr|safe}} {{filter|safe}} (in millions) for {{row|safe}} and {{col |safe}}'
+                                text: '{{title|safe}}'
                             },
 
                             xAxis: {
@@ -106,7 +106,7 @@
                             tooltip: {
                                 formatter: function () {
                                     return '<b>' + this.series.xAxis.categories[this.point.x] + '</b> sold <br><b>' +
-                                        this.point.value + '</b> , in millons, on  <br><b>' + this.series.yAxis.categories[this.point.y] + '</b>';
+                                        this.point.value + '</b>  on  <br><b>' + this.series.yAxis.categories[this.point.y] + '</b>';
                                 }
                             },
 

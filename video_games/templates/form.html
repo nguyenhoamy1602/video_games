@@ -71,6 +71,7 @@
                        Select an Value:
                        <br>
                        <select name="aggr">
+                           <option value="count">Count</option>
                           <option value="sum">Sum</option>
                           <option value="avg">Average</option>
                           <option value="min">Minimum</option>
@@ -94,7 +95,7 @@
                     Select Filter:
                     <br>
                     <select name="filter" id="filter" onChange="change(this.value)">
-                        <option value="none"> None</option>
+                        <option value="none" selected> None</option>
                         <option value="Platform">Platform</option>
                         <option value="Year">Year</option>
                         <option value="Genre">Genre</option>
@@ -105,7 +106,7 @@
                    <div class="row">
                         <br>
                         <select name="options" id="options">
-                            <option value="" disabled selected>Select</option>
+                            <option value="" selected></option>
                         </select>
                     </div>
                 <br>

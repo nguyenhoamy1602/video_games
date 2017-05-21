@@ -19,8 +19,7 @@ var optionsByCategory = {
 }
 
     function change(value) {
-    console.log(value);
-        if (value.length == 0 || value == "none") document.getElementById("options").innerHTML = "<option></option>";
+        if (value.length == 0 || value == "none") document.getElementById("options").innerHTML = "<option value="" selectedx></option>";
         else {
             var catOptions = "";
             for (categoryId in optionsByCategory[value]) {

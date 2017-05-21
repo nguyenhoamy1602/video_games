@@ -15,14 +15,14 @@ import json
 
 from video_games import app, database, convert, chart
 
-df = pd.read_csv('Data/vgsales.csv')
+df = pd.read_csv('Data/vgData.csv')
 
-aggFunctions = { 'sum':np.sum, 'avg':np.mean,
+aggFunctions = {'count':np.count_nonzero, 'sum':np.sum, 'avg':np.mean,
             'min':np.min, 'max':np.max, 'med':np.median}
 valueLabels = {'NA_Sales':'North America Sales', 'EU_Sales': 'Europe Sales', 'JP_Sales': 'Japan Sales',
                    'Other_Sales': 'Other Sales', 'Global_Sales':'Global Sales'}
-aggLabels = {'count': 'Counting', 'sum': 'Sum of', 'avg': 'Average of',
-             'min': 'Minimum of', 'max': 'Maximum of', 'med': 'Median of'}
+aggLabels = {'count': 'Counting', 'sum': 'Sum ', 'avg': 'Average ',
+             'min': 'Minimum ', 'max': 'Maximum ', 'med': 'Median '}
 
 @app.route('/')
 def index():
@@ -72,8 +72,12 @@ def pivot():
         height = len(yLabel)*40
         width = len(xLabel)*60
 
+    if aggr == "count":
+        title = "Number of Video games sold based on " + str(cat1) + " and " + str(cat2)
+    else:
+        title = aggLabels[aggr] + " (in millions) in Sales for " + str(cat1) + " and " + str(cat2)
     return render_template("pivot.html", x =xLabel,y=yLabel,v=values, yLength = height, xLength = width, row = str(cat1),
-                           col=str(cat2),aggr= aggLabels[aggr], filter =valueLabels[value] )
+                           col=str(cat2),aggr= aggLabels[aggr], filter =valueLabels[value], title = title )
 
 @app.route('/bubblechart')
 def bubble_chart():
