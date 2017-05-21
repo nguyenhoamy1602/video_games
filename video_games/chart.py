@@ -13,7 +13,7 @@ def chart1(df):
     year_count.Year = year_count.Year.astype('int')
 
     # remove data after 2016
-    year_count = year_count[year_count.Year <= 2016]
+    year_count = year_count[year_count.Year <= 2015]
     x = year_count.Year.tolist()
     y = year_count.Name.tolist()
     return (x,y)
@@ -22,11 +22,27 @@ def chart2(df):
     year_sale = df.groupby('Year')['NA_Sales','EU_Sales','JP_Sales','Other_Sales','Global_Sales'].sum().reset_index().round(2)
     year_sale.Year = year_sale.Year.astype('int')
     # remove data after 2016
-    year_sale = year_sale[year_sale.Year <= 2016]
+    year_sale = year_sale[year_sale.Year <= 2015]
     data = year_sale.values.T.tolist()
     return data
 
 def chart3(df):
+    series = []
+    for i in range(len(x)):
+        dict = {}
+        df1 = df[df['Genre']==x[i]][['Global_Sales','Name']]
+        y = df1.values.tolist()
+        for u in range(len(y)):
+            y[u].insert(0,i)
+            dict['data']=y
+            series.append(dict)
+    return series
+
+
+
+
+
+def chart4(df):    
 
     img = StringIO.StringIO()
 
