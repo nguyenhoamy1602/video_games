@@ -27,6 +27,8 @@ Highcharts.chart('container', {
     },
 
     yAxis: {
+        min: 0,
+        max: 100,
         title: {
             text: "Sales in million",
             style: {
@@ -56,7 +58,7 @@ Highcharts.chart('container', {
         }
     },
 
-    series: {{series | safe}}
+    series: {{series|safe}}
 
 });
 </script>

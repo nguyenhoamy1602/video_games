@@ -39,3 +39,28 @@ def chart3(df):
         dict['data']=sales_names
         series.append(dict)
     return (genre_list, series)
+
+
+def chart4(df):
+    genre_list = sorted(list(df['Genre'].unique()))
+    series = []
+
+    for i in range(len(genre_list)):
+        genre_series = {}
+        genre_data = []
+        
+        df1 = df[df['Genre']==genre_list[i]][['Year','Global_Sales','Name','Publisher']]
+        values = df1.values.tolist()
+        for value in values:
+            dict = {}
+            dict['x']=value[0]
+            dict['y']=value[1]
+            dict['z']=value[1]
+            dict['name']=value[2]
+            dict['publisher']= value[3]
+            dict['genre']=genre_list[i]
+            genre_data.append(dict)
+        genre_series['name']=genre_list[i]
+        genre_series['data']=genre_data
+        series.append(genre_series)
+    return (series)    

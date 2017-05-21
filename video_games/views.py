@@ -82,21 +82,8 @@ def pivot():
 
 @app.route('/bubblechart')
 def bubble_chart():
-    Genres = database.execute_query("SELECT distinct Genre from videogame order by Genre asc")
-    series = []
-    for Genre in Genres:
-        data = []
-        videogames = database.execute_query("SELECT * from videogame where Genre = ? and Year IS NOT \"N/A\"", (Genre[0],))
-        for videogame in videogames:
-            data.append(
-                { 'name': videogame['Name'], 
-                'publisher': videogame['Publisher'], 
-                'y': videogame['Global_Sales'], 
-                'x': videogame['Year'], 
-                'z': videogame['Global_Sales'],
-                'genre': videogame['Genre']})
-        series.append({ 'name': Genre[0], 'data': data })
-    return render_template("bubble.html", series = json.dumps(series))
+    series = chart.chart4(df.dropna()[:1001])
+    return render_template("bubble.html", series = series)
 
 
 @app.route('/visualisation')
