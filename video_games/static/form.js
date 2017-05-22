@@ -38,8 +38,12 @@ var rcLabels = [ "Platform", "Year", "Genre","Publisher"]
         var x = document.getElementById('warning');
         if(value === cat2Val){
             x.style.display = 'block';
+           document.getElementById('submit').disabled = true;
+           document.getElementById('submit').innerHTML = 'Waiting ... ';
         } else{
-            x.style.display = 'none'
+            x.style.display = 'none';
+            document.getElementById('submit').disabled = false;
+             document.getElementById('submit').innerHTML = 'Game Start!';
         }
     }
 
@@ -49,31 +53,11 @@ var rcLabels = [ "Platform", "Year", "Genre","Publisher"]
         var x = document.getElementById('warning');
         if(value === cat1Val){
             x.style.display = 'block';
+            document.getElementById('submit').disabled = true;
+           document.getElementById('submit').innerHTML = 'Waiting ... ';
         } else{
-            x.style.display = 'none'
+            x.style.display = 'none';
+            document.getElementById('submit').disabled = false;
+             document.getElementById('submit').innerHTML = 'Game Start!';
         }
     }
-//    function colFilter(value) {
-//        console.log(value);
-//        var catOptions = "";
-//        for (categoryId in rcLabels) {
-//            if (rcLabels[categoryId] != value){
-//                catOptions += "<option>" +rcLabels[categoryId]+ "</option>";
-//
-//            }
-//        }
-//        document.getElementById("cat1").innerHTML = catOptions;
-//    }
-//    function rowFilter(value) {
-//        console.log(value);
-//        var catOptions = "";
-//        for (categoryId in rcLabels) {
-//            console.log(categoryId);
-//            console.log(rcLabels[categoryId]);
-//            if (rcLabels[categoryId] != value){
-//                catOptions += "<option>" +rcLabels[categoryId]+ "</option>";
-//
-//            }
-//        }
-//        document.getElementById("cat2").innerHTML = catOptions;
-//    }
