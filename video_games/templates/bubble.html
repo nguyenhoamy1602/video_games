@@ -1,12 +1,13 @@
+{% extends "layout.html" %}
+{% block title %} Bubble Chart {% endblock %}
+{% block head %}
+<!-- Add these JavaScript inclusions for highcharts -->
+{% include "partials/highcharts.html" %}
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+{% endblock %}
 
-<html>
-<head>
-<title>Bubble Chart</title>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-   <script src="https://code.highcharts.com/highcharts.js"></script>
-   <script src="https://code.highcharts.com/highcharts-more.js"></script>
-</head>
-<body>
+{% block content %} 
+{% include "partials/nav.html" %}
 <div id="container" style="width: 90%; height: 90%; margin: 0 auto"></div>
 <script language="JavaScript">
 
@@ -27,6 +28,8 @@ Highcharts.chart('container', {
     },
 
     yAxis: {
+        min: 0,
+        max: 100,
         title: {
             text: "Sales in million",
             style: {
@@ -56,9 +59,9 @@ Highcharts.chart('container', {
         }
     },
 
-    series: {{series | safe}}
+    series: {{series|safe}}
 
 });
 </script>
-</body>
-</html>
+{% include "partials/footer.html" %}
+{% endblock %}  
