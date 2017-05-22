@@ -13,7 +13,7 @@ import numpy as np
 import csv
 import json
 
-from video_games import app, database, convert, chart
+from video_games import app, convert, chart
 
 df = pd.read_csv('Data/vgsales.csv')
 

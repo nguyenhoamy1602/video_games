@@ -9,4 +9,3 @@ app = Flask(__name__)
 app.config.from_object('config')
 
 from video_games import views
-import video_games.database
