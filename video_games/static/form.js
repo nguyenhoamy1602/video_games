@@ -36,8 +36,8 @@ var rcLabels = [ "Platform", "Year", "Genre","Publisher"]
         console.log(value);
         var catOptions = "";
         for (categoryId in rcLabels) {
-            if (categoryId != value){
-                catOptions += "<option>" +categoryId+ "</option>";
+            if (rcLabels[categoryId] != value){
+                catOptions += "<option>" +rcLabels[categoryId]+ "</option>";
 
             }
         }
@@ -47,6 +47,8 @@ var rcLabels = [ "Platform", "Year", "Genre","Publisher"]
         console.log(value);
         var catOptions = "";
         for (categoryId in rcLabels) {
+            console.log(categoryId);
+            console.log(rcLabels[categoryId]);
             if (categoryId != value){
                 catOptions += "<option>" +categoryId+ "</option>";
 
