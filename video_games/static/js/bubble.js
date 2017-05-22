@@ -42,7 +42,8 @@ $(document).ready(function() {
         series: {
             dataLabels: {
                 enabled: true,
-                format: '{point.name}'
+                format: '{point.name}',
+                color: 'black'
             }
         }
     },

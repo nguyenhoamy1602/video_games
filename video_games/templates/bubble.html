@@ -10,14 +10,15 @@
 {% block content %} 
 {% include "partials/nav.html" %}
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-md-12" style="text-align: center">
 	<h1>Bubble Chart</h1>
-	<h2>Click on the legend to select Genre you want to inspect</h2>
+	<h3>Click on the Legend to select Genre you want to inspect</h3>
+	<h3>Or drag your mouse to zoom in</h3>
 	</div>
 </div>
-<div id="{{bubble_chart|safe}}" style="width: 90%; height: 900px; margin: 0 auto"></div>
+<div id="{{bubble_id|safe}}" style="width: 90%; height: 900px; margin: 0 auto"></div>
 <script>
-	var bubble = {{bubble_chart|safe}}
+	var bubble = {{bubble_id|safe}}
 	var series = {{series|safe}}
 </script>
 {% include "partials/footer.html" %}

@@ -1,6 +1,6 @@
 import pandas as pd
 
-def chart1(df):
+def line(df):
 
     year_count = df.groupby('Year').count().reset_index()
     year_count.Year = year_count.Year.astype('int')
@@ -11,7 +11,7 @@ def chart1(df):
     y = year_count.Name.tolist()
     return (x,y)
 
-def chart2(df):
+def stack(df):
     year_sale = df.groupby('Year')['NA_Sales','EU_Sales','JP_Sales','Other_Sales'].sum().reset_index().round(2)
     year_sale.Year = year_sale.Year.astype('int')
     # remove data after 2015
@@ -27,7 +27,7 @@ def chart2(df):
         series.append(dict)
     return (year, series)
 
-def chart3(df):
+def scatter(df):
     genre_list = sorted(list(df['Genre'].unique()))
     series = []
     for i in range(len(genre_list)):
@@ -41,7 +41,7 @@ def chart3(df):
     return (genre_list, series)
 
 
-def chart4(df):
+def bubble_chart(df):
     genre_list = sorted(list(df['Genre'].unique()))
     series = []
 

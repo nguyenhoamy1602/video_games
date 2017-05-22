@@ -1,7 +1,8 @@
 $(document).ready(function() {
     $(chart_1).highcharts({
         chart: {
-            type: 'line'
+            type: 'line',
+            zoomType: 'xy'
         },
         title: {
             text: 'Number of Game Released by Year'

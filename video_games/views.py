@@ -82,19 +82,19 @@ def pivot():
                            col=str(cat2),aggr= aggLabels[aggr], filter =valueLabels[value], title = title )
 
 @app.route('/bubblechart')
-def bubble_chart():
-    series = chart.chart4(df.dropna()[:1001])
-    return render_template("bubble.html", series = series)
+def bubble():
+    series = chart.bubble_chart(df.dropna()[:1001])
+    return render_template("bubble.html", bubble_id='bubble_id', series = series)
 
 
 @app.route('/visualisation')
 def visual():
     chartID_1 = 'chartID_1'
-    x1,y1 = chart.chart1(df)
+    x1,y1 = chart.line(df)
     chartID_2 = 'chartID_2'
-    year,series2 = chart.chart2(df)
+    year,series2 = chart.stack(df)
     chartID_3 = 'chart_ID_3'
-    x3,series3 = chart.chart3(df)
+    x3,series3 = chart.scatter(df)
 
     return render_template('visualisation.html', chartID_1=chartID_1, x1=x1,y1=y1,
         chartID_2=chartID_2, year=year, series2=series2, 

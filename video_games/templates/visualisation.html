@@ -6,8 +6,14 @@
 {% endblock %}
 
 {% block content %}	
-{% include "partials/nav.html" %}	
-		<!-- 3. Add the container -->
+{% include "partials/nav.html" %}
+<div class="row">
+    <div class="col-md-12" style="text-align: center">
+    <h1>Visualisation</h1>
+    <h3>Some of our insights</h3>
+    <h3>Or drag your mouse to zoom in</h3>
+    </div>
+</div>
 		<row>
 		<div id="{{chartID_1|safe }}"  style="width: 800px; height: 400px; margin: 0 auto"></div>
 		</row>
