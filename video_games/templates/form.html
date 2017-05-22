@@ -14,7 +14,7 @@
             <div class="col-md-2 col-sm-3">
                 Select Column:
                 <br>
-                <select name="cat1" id="cat1" onChange="rowFilter(this.value)">
+                <select name="cat1" id="cat1" onChange="checkAlert1(this.value)">
                   <option value="Platform">Platform</option>
                   <option value="Year">Year</option>
                   <option value="Genre">Genre</option>
@@ -24,7 +24,7 @@
               <div class="col-md-2 col-sm-3">
                 Select Row:
                   <br>
-                 <select name="cat2" id="cat2" onChange="colFilter(this.value)">
+                 <select name="cat2" id="cat2" onChange="checkAlert2(this.value)">
                   <option value="Platform">Platform</option>
                   <option value="Year">Year</option>
                   <option value="Genre">Genre</option>
@@ -78,6 +78,18 @@
                 <br>
             </div>
             <div class="col-md-2col-sm-1"></div>
+
+            <div class="row">
+                <div class="col-md-3 col-sm-3"></div>
+                    <div class="col-md-6 col-sm-6">
+                        <div id = "warning">
+                           <div class="alert alert-danger">
+                              <strong>Danger!</strong> Indicates a dangerous or potentially negative action.
+                            </div>
+                        </div>
+                    </div>
+                 <div class="col-md-3 col-sm-3"></div>
+            </div>
             <div class="row">
                 <div class="col-md-5 col-sm-5"></div>
                 <div class="col-md-2 col-sm-2">

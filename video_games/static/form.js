@@ -32,27 +32,48 @@ var rcLabels = [ "Platform", "Year", "Genre","Publisher"]
         }
     }
 
-    function colFilter(value) {
-        console.log(value);
-        var catOptions = "";
-        for (categoryId in rcLabels) {
-            if (rcLabels[categoryId] != value){
-                catOptions += "<option>" +rcLabels[categoryId]+ "</option>";
 
-            }
+    function checkAlert1(value){
+        var cat2Val = document.getElementById("cat2").value
+        var x = document.getElementById('warning');
+        if(value === cat2Val){
+            x.style.display = 'block';
+        } else{
+            x.style.display = 'none'
         }
-        document.getElementById("cat1").innerHTML = catOptions;
     }
-    function rowFilter(value) {
-        console.log(value);
-        var catOptions = "";
-        for (categoryId in rcLabels) {
-            console.log(categoryId);
-            console.log(rcLabels[categoryId]);
-            if (rcLabels[categoryId] != value){
-                catOptions += "<option>" +rcLabels[categoryId]+ "</option>";
 
-            }
+
+    function checkAlert2(value){
+        var cat1Val = document.getElementById("cat1").value
+        var x = document.getElementById('warning');
+        if(value === cat1Val){
+            x.style.display = 'block';
+        } else{
+            x.style.display = 'none'
         }
-        document.getElementById("cat2").innerHTML = catOptions;
     }
+//    function colFilter(value) {
+//        console.log(value);
+//        var catOptions = "";
+//        for (categoryId in rcLabels) {
+//            if (rcLabels[categoryId] != value){
+//                catOptions += "<option>" +rcLabels[categoryId]+ "</option>";
+//
+//            }
+//        }
+//        document.getElementById("cat1").innerHTML = catOptions;
+//    }
+//    function rowFilter(value) {
+//        console.log(value);
+//        var catOptions = "";
+//        for (categoryId in rcLabels) {
+//            console.log(categoryId);
+//            console.log(rcLabels[categoryId]);
+//            if (rcLabels[categoryId] != value){
+//                catOptions += "<option>" +rcLabels[categoryId]+ "</option>";
+//
+//            }
+//        }
+//        document.getElementById("cat2").innerHTML = catOptions;
+//    }
