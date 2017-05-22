@@ -40,7 +40,6 @@ def form():
 
 @app.route('/pivot', methods=['GET', 'POST'])
 def pivot():
-    df1 = df[:1001]
     if request.method == 'POST':
         cat1 = request.form['cat1']
         cat2 = request.form['cat2']
@@ -49,15 +48,15 @@ def pivot():
         filter = request.form['filter']
         option = request.form['options']
         if filter == 'none':
-            table = pd.pivot_table(df1, index=[str(cat1)], columns=[str(cat2)],
+            table = pd.pivot_table(df, index=[str(cat1)], columns=[str(cat2)],
                                    values=[str(value)],
                                    aggfunc=aggFunctions[aggr], fill_value="")
         elif filter == 'Year':
-            table = pd.pivot_table(df1[df1[filter] == int(option)], index=[str(cat1)], columns=[str(cat2)],
+            table = pd.pivot_table(df[df[filter] == int(option)], index=[str(cat1)], columns=[str(cat2)],
                                    values=[str(value)],
                                    aggfunc=aggFunctions[aggr], fill_value="")
         else:
-            table = pd.pivot_table(df1[df1[filter] == (option)], index=[str(cat1)], columns=[str(cat2)],
+            table = pd.pivot_table(df[df[filter] == (option)], index=[str(cat1)], columns=[str(cat2)],
                                    values=[str(value)],
                                    aggfunc=aggFunctions[aggr], fill_value="")
 
