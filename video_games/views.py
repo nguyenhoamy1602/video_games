@@ -13,9 +13,9 @@ import numpy as np
 import csv
 import json
 
-from video_games import app, database, convert, chart
+from video_games import app, convert, chart
 
-df = pd.read_csv('Data/vgData.csv')
+df = pd.read_csv('Data/vgsales.csv')
 
 aggFunctions = {'count':np.count_nonzero, 'sum':np.sum, 'avg':np.mean,
             'min':np.min, 'max':np.max, 'med':np.median}
@@ -81,31 +81,23 @@ def pivot():
 
 @app.route('/bubblechart')
 def bubble_chart():
-    Genres = database.execute_query("SELECT distinct Genre from videogame order by Genre asc")
-    series = []
-    for Genre in Genres:
-        data = []
-        videogames = database.execute_query("SELECT * from videogame where Genre = ? and Year IS NOT \"N/A\"", (Genre[0],))
-        for videogame in videogames:
-            data.append(
-                { 'name': videogame['Name'], 
-                'publisher': videogame['Publisher'], 
-                'y': videogame['Global_Sales'], 
-                'x': videogame['Year'], 
-                'z': videogame['Global_Sales'],
-                'genre': videogame['Genre']})
-        series.append({ 'name': Genre[0], 'data': data })
-    return render_template("bubble.html", series = json.dumps(series))
+    series = chart.chart4(df.dropna()[:1001])
+    return render_template("bubble.html", series = series)
 
 
 @app.route('/visualisation')
 def visual():
+    chartID_1 = 'chartID_1'
     x1,y1 = chart.chart1(df)
-    year,na_sale, eu_sale, jp_sale, other_sale, global_sale = chart.chart2(df)
+    chartID_2 = 'chartID_2'
+    year,series2 = chart.chart2(df)
+    chartID_3 = 'chart_ID_3'
+    x3,series3 = chart.chart3(df)
 
-    return render_template('visualisation.html', x1=x1,y1=y1,
-        year=year,na_sale=na_sale, eu_sale=eu_sale, jp_sale=jp_sale, 
-        other_sale=other_sale,global_sale=global_sale)
+    return render_template('visualisation.html', chartID_1=chartID_1, x1=x1,y1=y1,
+        chartID_2=chartID_2, year=year, series2=series2, 
+        x3=x3, series3=series3, chartID_3=chartID_3)
+
 
 
 if __name__ == "__main__":

@@ -1,125 +1,38 @@
+{% extends "layout.html" %}
+{% block title %} Visualisation {% endblock %}
+{% block head %}
+<!-- Add these JavaScript inclusions for highcharts -->
+{% include "partials/highcharts.html" %}
+{% endblock %}
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>Highcharts Example</title>
-		
-		
-		<!-- 1. Add these JavaScript inclusions in the head of your page -->
-		<script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-		<script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
-		<script type="text/javascript" src="https://code.highcharts.com/modules/data.js"></script>
-		<script src="http://code.highcharts.com/modules/exporting.js"></script>
-		
-		
-		<!-- 2. Add the JavaScript to initialize the chart on document ready -->
-
-		
-	</head>
-	<body>
-		
+{% block content %}	
+{% include "partials/nav.html" %}	
 		<!-- 3. Add the container -->
 		<row>
-		<div id="container1" style="width: 800px; height: 400px; margin: 0 auto"></div>
+		<div id="{{chartID_1|safe }}"  style="width: 800px; height: 400px; margin: 0 auto"></div>
 		</row>
-				<script type="text/javascript">
+		<row>
+        <div id="{{chartID_2|safe}}" style="width: 800px; height: 400px; margin: 0 auto"></div>
+        </row>
+        <div id="{{ chartID_3|safe }}" style="width: 800px; height: 400px; margin: 0 auto"></div>
 
-    Highcharts.chart('container1', {
-    chart: {
-        type: 'line'
-    },
-    title: {
-        text: 'Number of Game Released by Year'
-    },
-    subtitle: {
-        text: 'Source: vgsales'
-    },
-    xAxis: {
-        categories: {{x1}}
-    },
-    yAxis: {
-        title: {
-            text: 'Number of Game'
-        }
-    },
-    legend: {
-				enabled: false
-	},
-    plotOptions: {
-        line: {
-            dataLabels: {
-                enabled: false
-            },
-            enableMouseTracking: true
-        }
-    },
-    series: [{
-    	name: 'Number of Game',
-        data: {{y1}}
-    }]
-});
-    	</script>
+        <script>
+            var chart_1 = {{chartID_1|safe}}
+            var x1 = {{x1|safe}}
+            var y1 = {{y1|safe}}
 
-    	<div id="container2" style="width: 800px; height: 400px; margin: 0 auto"></div>
-		<script type="text/javascript">
-Highcharts.chart('container2', {
-    chart: {
-        type: 'area',
-        zoomType:'xy'
-    },
-    title: {
-        text: 'Sales Volume by Year'
-    },
-    subtitle: {
-        text: 'Source: vgsales'
-    },
-    xAxis: {
-        categories: {{year}},
-        tickmarkPlacement: 'on',
-        title: {
-            enabled: false
-        }
-    },
-    yAxis: {
-        title: {
-            text: 'Sales Units'
-        }
-    },
-    tooltip: {
-        split: true,
-        valueSuffix: ' millions'
-    },
-    plotOptions: {
-				area: {
-					stacking: 'normal',
-					marker: {
-						radius: 2
-					},
-					lineWidth: 1,
-					states: {
-						hover: {
-							lineWidth: 1
-						}
-					},
-					threshold: 0
-				}
-			},
-    series: [{
-        name: 'North_America',
-        data: {{na_sale}}
-    }, {
-        name: 'Europe',
-        data: {{eu_sale}}
-    }, {
-        name: 'Japan',
-        data: {{jp_sale}}
-    }, {
-        name: 'Other',
-        data: {{other_sale}}
-    }]
-});
-    	</script>
-			
-	</body>
-</html>
+            var chart_2 = {{chartID_2|safe}}
+            var year = {{year|safe}}
+            var series2 = {{series2|safe}}
+
+
+            var chart_3 = {{ chartID_3|safe }}
+            var x3 = {{x3|safe}}
+            var series3 = {{ series3|safe }}
+        </script>
+<script src="../static/js/scatter.js"></script>
+<script src="../static/js/line.js"></script>
+<script src="../static/js/stackarea.js"></script>
+
+{% include "partials/footer.html" %}
+{% endblock %}	
