@@ -73,9 +73,11 @@ def pivot():
         width = len(xLabel)*60
 
     if aggr == "count":
-        title = "Number of Video games sold based on " + str(cat1) + " and " + str(cat2)
+        title = "Number of Video games sold in " +valueLabels[str(value)] +  "based on " + str(cat1) \
+                + " and " + str(cat2)
     else:
-        title = aggLabels[aggr] + " (in millions) in Sales for " + str(cat1) + " and " + str(cat2)
+        title = aggLabels[aggr] + " (in millions) in Sales for " + str(cat1) + " and " \
+                + str(cat2)  + " in " + valueLabels[str(value)]
     return render_template("pivot.html", x =xLabel,y=yLabel,v=values, yLength = height, xLength = width, row = str(cat1),
                            col=str(cat2),aggr= aggLabels[aggr], filter =valueLabels[value], title = title )
 
