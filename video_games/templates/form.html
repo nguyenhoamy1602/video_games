@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <title>Video Game Pivot Table</title>
+<script language="JavaScript" type="text/javascript" src="../static/form.js"></script>
     <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -10,9 +11,8 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script language="JavaScript" type="text/javascript" src="../static/form.js"></script>
+
 <!--link rel="stylesheet" type="text/css" href="../static/home.css"-->
-    <script src="../static/form.js"></script>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -48,21 +48,21 @@
             <div class="col-md-2 col-sm-3">
                 Select Column:
                 <br>
-                <select name="cat1">
-                  <option >Platform</option>
-                  <option>Year</option>
-                  <option>Genre</option>
-                  <option >Publisher</option>
+                <select name="cat1" id="cat1" onChange="rowFilter(this.value)">
+                  <option value="Platform">Platform</option>
+                  <option value="Year">Year</option>
+                  <option value="Genre">Genre</option>
+                  <option value="Publisher">Publisher</option>
                 </select>
             </div>
               <div class="col-md-2 col-sm-3">
                 Select Row:
                   <br>
-                 <select name="cat2">
-                  <option>Platform</option>
-                  <option>Year</option>
-                  <option>Genre</option>
-                  <option>Publisher</option>
+                 <select name="cat2" id="cat2" onChange="colFilter(this.value)">
+                  <option value="Platform">Platform</option>
+                  <option value="Year">Year</option>
+                  <option value="Genre">Genre</option>
+                  <option value="Publisher">Publisher</option>
                 </select>
 
             </div>

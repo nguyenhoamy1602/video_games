@@ -18,8 +18,11 @@ var optionsByCategory = {
     "Westwood Studios"]
 }
 
+var rcLabels = [ "Platform", "Year", "Genre","Publisher"]
+
+
     function change(value) {
-        if (value.length == 0 || value == "none") document.getElementById("options").innerHTML = "<option value="" selectedx></option>";
+        if (value.length == 0 || value == "none") document.getElementById("options").innerHTML = "<option selected></option>";
         else {
             var catOptions = "";
             for (categoryId in optionsByCategory[value]) {
@@ -27,4 +30,27 @@ var optionsByCategory = {
             }
             document.getElementById("options").innerHTML = catOptions;
         }
+    }
+
+    function colFilter(value) {
+        console.log(value);
+        var catOptions = "";
+        for (categoryId in rcLabels) {
+            if (categoryId != value){
+                catOptions += "<option>" +categoryId+ "</option>";
+
+            }
+        }
+        document.getElementById("cat1").innerHTML = catOptions;
+    }
+    function rowFilter(value) {
+        console.log(value);
+        var catOptions = "";
+        for (categoryId in rcLabels) {
+            if (categoryId != value){
+                catOptions += "<option>" +categoryId+ "</option>";
+
+            }
+        }
+        document.getElementById("cat2").innerHTML = catOptions;
     }
