@@ -49,8 +49,8 @@ var rcLabels = [ "Platform", "Year", "Genre","Publisher"]
         for (categoryId in rcLabels) {
             console.log(categoryId);
             console.log(rcLabels[categoryId]);
-            if (categoryId != value){
-                catOptions += "<option>" +categoryId+ "</option>";
+            if (rcLabels[categoryId] != value){
+                catOptions += "<option>" +rcLabels[categoryId]+ "</option>";
 
             }
         }
