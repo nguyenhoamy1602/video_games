@@ -5,7 +5,7 @@ $(document).ready(function() {
             zoomType:'xy'
         },
         title: {
-            text: 'Sales Volume by Year'
+            text: 'Sales Volume by Year and Region'
         },
         subtitle: {
             text: 'Source: vgsales'
