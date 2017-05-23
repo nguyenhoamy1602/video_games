@@ -102,7 +102,7 @@ var data_option = $('#travel-select').val();
     $("#travel-select").change(function () {
         var data_option = $(this).val();
         var chart = $(chart_1).highcharts();  
-        var str = ""; 
+        var str = "";
         var i;
         //change chart data
         chart.xAxis[0].setCategories(series1[data_option][0]);
@@ -133,4 +133,4 @@ var text= {
                 "but Palcom has the highest average sales."
     , "Platform": "PS2 has the most games released and highest global sales. " +
                 "GB has the highest average sales" 
-}
+};

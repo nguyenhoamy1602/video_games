@@ -13,14 +13,8 @@
         <h3>The best year, platform, genre and publisher to release a game?</h3>
     </div>   
 </div>
-<div class="row"> 
-<div class = "col-md-6 vcenter">
-<p id = "analysis"> The best year to release game is 2008 with highest Global Sales. <br> 
-However, the year with the highest mean unit sales is 1989. <br>
-Though total sales have decreased in recent year, mean unit sales per game has been relatively constant.
-</p>
-</div><!--
-    --><div class="col-md-6 col-xs-12 vcenter">
+<div class="row row-centered"> 
+<div class = "col-xs-6 col-centered">
     <div align="center">
     <select id="travel-select">
         <option value="Year">Year</option>
@@ -29,24 +23,40 @@ Though total sales have decreased in recent year, mean unit sales per game has b
         <option value="Platform">Platform</option>
     </select>
     </div> 
+<p id = "analysis"> The best year to release game is 2008 with highest Global Sales. <br> 
+However, the year with the highest mean unit sales is 1989. <br>
+Though total sales have decreased in recent year, mean unit sales per game has been relatively constant.
+</p>
+</div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-xs-12">
+
     <div class = "chart", id="{{chartID_1|safe}}"></div>
 </div>
+<div class="col-md-6">  
+    <div class = "chart", id="{{chartID_3|safe}}"></div>
 </div>
+</div>
+</div>
+
 
 <div class="row"> 
 <div class = "col-md-6">
-
 </div>
 <div class="col-md-6">  
-    <div class = "chart", id="{{chartID_2|safe}}"></div>
+    
 </div>
 </div>
     
 <div class="row"> 
-<div class = "col-md-6">
+<div class = "col-md-6" align='center'>
+<p style="padding-left: 120px"> The best region to sell game is North America. <br> 
+Its sales is closely related to the Global Sales. <br>
+</p>
 </div>
 <div class="col-md-6">   
-    <div class = "chart", id="{{chartID_3|safe}}"></div>
+    <div class = "chart", id="{{chartID_2|safe}}"></div>
 </div>
 </div>
 
@@ -62,8 +72,6 @@ Though total sales have decreased in recent year, mean unit sales per game has b
 
 
     var chart_3 = {{ chartID_3|safe }}
-    var category = "{{cat|safe}}"
-    var x3 = {{x3|safe}}
     var series3 = {{ series3|safe }}
 
 </script>

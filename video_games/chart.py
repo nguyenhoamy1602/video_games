@@ -1,7 +1,7 @@
 import pandas as pd
 
 aggFunc = ['count', 'sum', 'mean']
-categories = ["Genre", "Publisher", "Platform"]
+categories = ["Genre", "Publisher", "Platform", "Year"]
 
 def year_data(df):
     data = df.groupby("Year").agg({'Global_Sales': aggFunc}).round(2)
@@ -35,10 +35,12 @@ def top_performer(df, category):
 
 def combined(df):
     combined_data = {}
-    combined_data['Year'] = year_data(df)
     for i in categories:
-        dataset = top_performer(df, i)[1]
-        combined_data[i] = dataset
+        if i == 'Year':
+            combined_data['Year'] = year_data(df)
+        else:
+            dataset = top_performer(df, i)[1]
+            combined_data[i] = dataset
     return combined_data 
 
 def stack(df):
@@ -59,7 +61,7 @@ def stack(df):
 
 def scatter(df,category):
     top_perform = top_performer(df, category)[0]
-    series = [top_perform]
+    series = []
     for i in range(len(top_perform)):
         dict = {}
         df1 = df[df[category]==top_perform[i]][['Global_Sales','Name']]
@@ -67,13 +69,13 @@ def scatter(df,category):
         for u in range(len(sales_names)):
             sales_names[u].insert(0,i)
         dict['data']=sales_names
-        series.append(dict)    
-    return series
+        series.append(dict)   
+    return top_perform, series
 
 def scatter_data(df):
     scatter_data = {}
     for i in categories:
-        scatter_data[i] = scatter(df, i)
+        scatter_data[i] = list(scatter(df, i))
     return scatter_data
 
 

@@ -5,17 +5,13 @@ $(document).ready(function() {
                 zoomType: 'xy',
             },
             title: {
-                text: 'Games Sales Units according to ' + category
+                text: 'Top 1000 Games Sales According to Year'
             },
             subtitle: {
                 text: 'Source: vgsales'
             },
 		xAxis: {
-                title: {
-                    enabled: true,
-                    text: 'Genre'
-                },
-                categories: x3
+                categories: series3['Year'][0]
             },
 		yAxis: {"title": {"text": 'Unit Sales (million)'}},
 		tooltip: {
@@ -48,6 +44,21 @@ $(document).ready(function() {
                     }
                 }
             },
-		series: series3
-	});
+		series: series3['Year'][1]
+    });
 });
+
+var data_option = $('#travel-select').val();
+$("#travel-select").change(function () {
+    var data_option = $(this).val();
+    var chart3 = $(chart_3).highcharts(); 
+    var i;
+    //change chart data
+    var category = series3[data_option][0];
+    chart3.xAxis[0].setCategories(category);
+    for(i=0;i<category.length;i++){
+    chart3.series[i].setData(series3[data_option][1][i]);
+    };
+    chart3.setTitle({text:"Top 1000 Games Sales According to " + data_option});
+    $(chart_3).highcharts().redraw();
+    });
