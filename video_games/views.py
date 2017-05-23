@@ -90,14 +90,14 @@ def bubble():
 @app.route('/visualisation')
 def visual():
     chartID_1 = 'chartID_1'
-    year1,series1 = chart.line(df)
+    series1 = chart.combined(df)
     chartID_2 = 'chartID_2'
     year,series2 = chart.stack(df)
     chartID_3 = 'chart_ID_3'
     cat = 'Publisher'
     x3,series3 = chart.scatter(df, cat)
 
-    return render_template('visualisation.html', chartID_1=chartID_1, year1=year1,series1=series1,
+    return render_template('visualisation.html', chartID_1=chartID_1, series1=series1,
         chartID_2=chartID_2, year=year, series2=series2, 
         x3=x3, series3=series3, chartID_3=chartID_3, cat=cat)
 

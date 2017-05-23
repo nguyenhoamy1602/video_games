@@ -9,35 +9,40 @@
 {% include "partials/nav.html" %}
 <div class="row">
     <div class="col-md-12" style="text-align: center">
-    <h1>Visualisation</h1>
-    <h3>Some of our insights</h3>
-    <h3>Or drag your mouse to zoom in</h3>
+        <h1>Visualisation</h1>
+        <h3>Some of our insights</h3>
+        <h3>Or drag your mouse to zoom in</h3>
     </div>
 </div>
-		<row>
-		<div class = "chart", id="{{chartID_1|safe}}"></div>
-		</row>
-		<row>
-        <div class = "chart", id="{{chartID_2|safe}}"></div>
+    <div align="center">
+    <select id="travel-select">
+        <option value="Year">Year</option>
+        <option value="Genre">Genre</option>
+        <option value="Publisher">Publisher</option>
+        <option value="Platform">Platform</option>
+    </select>
+    </div>    
+    <div class = "chart", id="{{chartID_1|safe}}"></div>
+<row>
+    <div class = "chart", id="{{chartID_2|safe}}"></div>
 
-        </row>
-        <div class = "chart", id="{{ chartID_3|safe}}"></div>
+</row>
+<div class = "chart", id="{{ chartID_3|safe}}"></div>
 
-        <script>
-            var chart_1 = {{chartID_1|safe}}
-            var year1 = {{year1|safe}}
-            var series1 = {{series1|safe}}
+<script>
+    var chart_1 = {{chartID_1|safe}}
+    var series1 = {{series1|safe}}
 
-            var chart_2 = {{chartID_2|safe}}
-            var year = {{year|safe}}
-            var series2 = {{series2|safe}}
+    var chart_2 = {{chartID_2|safe}}
+    var year = {{year|safe}}
+    var series2 = {{series2|safe}}
 
 
-            var chart_3 = {{ chartID_3|safe }}
-            var category = "{{cat|safe}}"
-            var x3 = {{x3|safe}}
-            var series3 = {{ series3|safe }}
-        </script>
+    var chart_3 = {{ chartID_3|safe }}
+    var category = "{{cat|safe}}"
+    var x3 = {{x3|safe}}
+    var series3 = {{ series3|safe }}
+</script>
 <script src="../static/js/scatter.js"></script>
 <script src="../static/js/line.js"></script>
 <script src="../static/js/stackarea.js"></script>

@@ -1,14 +1,46 @@
 import pandas as pd
 
-def line(df):
-    df = df[df.Year <= 2015]
-    aggFunc = ['count', 'sum', 'mean']
-    data = df.groupby('Year').agg({'Global_Sales': aggFunc}).round(2)
-    data = data.values.T.tolist()
-    year = sorted(list(df['Year'].unique().astype('int')))
-    return (year, data)
+aggFunc = ['count', 'sum', 'mean']
 
+def year_data(df):
+     
+    data = df.groupby("Year").agg({'Global_Sales': aggFunc}).round(2)
+    dataset = data.values.T.tolist()
+    dataset.insert(0, data.index.tolist())
+    return dataset
 
+def aggregate(df, category):
+    aggFunc = ['count', 'sum', 'mean'] 
+    data = df.groupby(category).agg({'Global_Sales': aggFunc}).round(2)
+    data_dict = {}
+    category_list = data.index.tolist()
+    values = data.values.tolist()
+    for i in range(len(category_list)):
+        data_dict[category_list[i]] = values[i]
+    return data, data_dict
+
+def top_performer(df, category):
+    data, data_dict = aggregate(df, category)
+    top_category = []
+    for i in aggFunc:
+        top10 = data["Global_Sales"][i].sort_values(ascending=False).head(10)
+        top_category.append(top10.index.tolist())
+    top_perform = [item for sublist in top_category for item in sublist]
+    top_perform = sorted(list(set(top_perform)))
+    dataset = []
+    for i in top_perform:
+        dataset.append(data_dict[i])
+    dataset = map(list, zip(*dataset))
+    dataset.insert(0,top_perform)
+    return dataset
+
+def combined(df):
+    combined_data = {}
+    combined_data['Year'] = year_data(df)
+    for i in ["Genre", "Publisher", "Platform"]:
+        dataset = top_performer(df, i)
+        combined_data[i] = dataset
+    return combined_data 
 
 def stack(df):
     year_sale = df.groupby('Year')['Global_Sales','NA_Sales','EU_Sales','JP_Sales','Other_Sales'].sum().reset_index().round(2)

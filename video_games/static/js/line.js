@@ -1,18 +1,18 @@
 $(document).ready(function() {
     $(chart_1).highcharts({
         chart: {
-        zoomType: 'xy'
-    },
-    title: {
-        text: 'Global Game Sales By Year'
-    },
-    subtitle: {
-        text: 'Source: vgsales'
-    },
-    xAxis: [{
-        categories: year1,
-        crosshair: true
-    }],
+            zoomType: 'xy'
+        },
+        title: {
+            text: 'Global Game Sales By Year'
+        },
+        subtitle: {
+            text: 'Source: vgsales'
+        },
+        xAxis: [{
+            categories: series1['Year'][0],
+            crosshair: true
+        }],
     yAxis: [{ // Primary yAxis
         labels: {
             format: '{value}',
@@ -63,20 +63,11 @@ $(document).ready(function() {
     tooltip: {
         shared: true
     },
-    legend: {
-        layout: 'vertical',
-        align: 'left',
-        x: 80,
-        verticalAlign: 'top',
-        y: 55,
-        floating: true,
-        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
-    },
     series: [{
         name: 'Number of Games',
         type: 'column',
         yAxis: 0,
-        data: series1[0],
+        data: series1['Year'][1],
         tooltip: {
             valueSuffix: ' games'
         }
@@ -85,7 +76,7 @@ $(document).ready(function() {
         name: 'Sum of Global Sales',
         type: 'line',
         yAxis: 1,
-        data: series1[1],
+        data: series1['Year'][2],
         marker: {
             enabled: false
         },
@@ -98,10 +89,27 @@ $(document).ready(function() {
         name: 'Unit Sales/Game',
         type: 'line',
         yAxis: 2,
-        data: series1[2],
+        data: series1['Year'][3],
         tooltip: {
             valueSuffix: ' million'
         }
     }]
 });
+    var data_option = $('#travel-select').val();
+    $("#travel-select").change(function () {
+        var data_option = $(this).val();
+        var chart = $(chart_1).highcharts();   
+        var i;
+        //change chart data
+        chart.xAxis[0].setCategories(series1[data_option][0]);
+        for(i=0;i<3;i++){
+            chart.series[i].setData(series1[data_option][i+1]);
+        }
+        if (data_option==="Year"){
+            chart.setTitle({text:"Global Game Sales By Year"});
+        } else {
+            chart.setTitle({text:"Top Performing " + data_option});
+        }
+        $(chart_1).highcharts().redraw();
+    }); 
 });
