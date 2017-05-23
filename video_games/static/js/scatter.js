@@ -17,7 +17,7 @@ $(document).ready(function() {
                 },
                 categories: x3
             },
-		yAxis: {"title": {"text": 'Sale Units in million'}},
+		yAxis: {"title": {"text": 'Unit Sales (million)'}},
 		tooltip: {
                 formatter: function() {
                         return ''+

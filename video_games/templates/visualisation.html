@@ -12,8 +12,16 @@
         <h1>Visualisation</h1>
         <h3>Some of our insights</h3>
         <h3>Or drag your mouse to zoom in</h3>
-    </div>
+    </div>   
 </div>
+<div class="row"> 
+<div class = "col-md-6 vcenter">
+<p> Global Game Sale increases across the years. <br> 
+Highly correlate with number of games released. <br>
+Mean Unit Sales per game has been relatively constant in recent years.
+</p>
+</div><!--
+    --><div class="col-md-6 col-xs-12 vcenter">
     <div align="center">
     <select id="travel-select">
         <option value="Year">Year</option>
@@ -21,13 +29,29 @@
         <option value="Publisher">Publisher</option>
         <option value="Platform">Platform</option>
     </select>
-    </div>    
+    </div> 
     <div class = "chart", id="{{chartID_1|safe}}"></div>
-<row>
-    <div class = "chart", id="{{chartID_2|safe}}"></div>
+</div>
+</div>
 
-</row>
-<div class = "chart", id="{{ chartID_3|safe}}"></div>
+<div class="row"> 
+<div class = "col-md-6">
+
+</div>
+<div class="col-md-6">  
+    <div class = "chart", id="{{chartID_2|safe}}"></div>
+</div>
+</div>
+    
+<div class="row"> 
+<div class = "col-md-6">
+</div>
+<div class="col-md-6">   
+    <div class = "chart", id="{{chartID_3|safe}}"></div>
+</div>
+</div>
+
+
 
 <script>
     var chart_1 = {{chartID_1|safe}}

@@ -95,7 +95,7 @@ def visual():
     year,series2 = chart.stack(df)
     chartID_3 = 'chart_ID_3'
     cat = 'Publisher'
-    x3,series3 = chart.scatter(df, cat)
+    x3,series3 = chart.scatter(df[:1001], cat)
 
     return render_template('visualisation.html', chartID_1=chartID_1, series1=series1,
         chartID_2=chartID_2, year=year, series2=series2, 
