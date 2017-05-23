@@ -1,16 +1,15 @@
 import pandas as pd
 
 aggFunc = ['count', 'sum', 'mean']
+categories = ["Genre", "Publisher", "Platform"]
 
 def year_data(df):
-     
     data = df.groupby("Year").agg({'Global_Sales': aggFunc}).round(2)
     dataset = data.values.T.tolist()
     dataset.insert(0, data.index.tolist())
     return dataset
 
 def aggregate(df, category):
-    aggFunc = ['count', 'sum', 'mean'] 
     data = df.groupby(category).agg({'Global_Sales': aggFunc}).round(2)
     data_dict = {}
     category_list = data.index.tolist()
@@ -32,13 +31,13 @@ def top_performer(df, category):
         dataset.append(data_dict[i])
     dataset = map(list, zip(*dataset))
     dataset.insert(0,top_perform)
-    return dataset
+    return top_perform, dataset
 
 def combined(df):
     combined_data = {}
     combined_data['Year'] = year_data(df)
-    for i in ["Genre", "Publisher", "Platform"]:
-        dataset = top_performer(df, i)
+    for i in categories:
+        dataset = top_performer(df, i)[1]
         combined_data[i] = dataset
     return combined_data 
 
@@ -58,18 +57,26 @@ def stack(df):
         series.append(dict)
     return (year, series)
 
-def scatter(df,cat):
-    cat_list = ['Activision', 'Arena Entertainment', 'Electronic Arts', 'Konami Digital Entertainment', 'Microsoft Game Studios', 'Namco Bandai Games', 'Nintendo', 'Palcom', 'Red Orb', 'RedOctane', 'Sega', 'Sony Computer Entertainment', 'Sony Computer Entertainment Europe', 'THQ', 'Take-Two Interactive', 'UEP Systems', 'Ubisoft', 'Valve', 'Westwood Studios']
-    series = []
-    for i in range(len(cat_list)):
+def scatter(df,category):
+    top_perform = top_performer(df, category)[0]
+    series = [top_perform]
+    for i in range(len(top_perform)):
         dict = {}
-        df1 = df[df[cat]==cat_list[i]][['Global_Sales','Name']]
+        df1 = df[df[category]==top_perform[i]][['Global_Sales','Name']]
         sales_names = df1.values.tolist()
         for u in range(len(sales_names)):
             sales_names[u].insert(0,i)
         dict['data']=sales_names
-        series.append(dict)
-    return (cat_list, series)
+        series.append(dict)    
+    return series
+
+def scatter_data(df):
+    scatter_data = {}
+    for i in categories:
+        scatter_data[i] = scatter(df, i)
+    return scatter_data
+
+
 
 
 def bubble_chart(df):
