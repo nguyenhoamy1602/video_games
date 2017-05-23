@@ -73,30 +73,33 @@ def pivot():
         width = len(xLabel)*60
 
     if aggr == "count":
-        title = "Number of Video games sold based on " + str(cat1) + " and " + str(cat2)
+        title = "Number of Video games sold in " +valueLabels[str(value)] +  "based on " + str(cat1) \
+                + " and " + str(cat2)
     else:
-        title = aggLabels[aggr] + " (in millions) in Sales for " + str(cat1) + " and " + str(cat2)
+        title = aggLabels[aggr] + " (in millions) in Sales for " + str(cat1) + " and " \
+                + str(cat2)  + " in " + valueLabels[str(value)]
     return render_template("pivot.html", x =xLabel,y=yLabel,v=values, yLength = height, xLength = width, row = str(cat1),
                            col=str(cat2),aggr= aggLabels[aggr], filter =valueLabels[value], title = title )
 
 @app.route('/bubblechart')
-def bubble_chart():
-    series = chart.chart4(df.dropna()[:1001])
-    return render_template("bubble.html", series = series)
+def bubble():
+    series = chart.bubble_chart(df.dropna()[:1001])
+    return render_template("bubble.html", bubble_id='bubble_id', series = series)
 
 
 @app.route('/visualisation')
 def visual():
     chartID_1 = 'chartID_1'
-    x1,y1 = chart.chart1(df)
+    series1 = chart.combined(df)
     chartID_2 = 'chartID_2'
-    year,series2 = chart.chart2(df)
+    year,series2 = chart.stack(df)
     chartID_3 = 'chart_ID_3'
-    x3,series3 = chart.chart3(df)
+    cat = 'Publisher'
+    x3,series3 = chart.scatter(df[:1001], cat)
 
-    return render_template('visualisation.html', chartID_1=chartID_1, x1=x1,y1=y1,
+    return render_template('visualisation.html', chartID_1=chartID_1, series1=series1,
         chartID_2=chartID_2, year=year, series2=series2, 
-        x3=x3, series3=series3, chartID_3=chartID_3)
+        x3=x3, series3=series3, chartID_3=chartID_3, cat=cat)
 
 
 

@@ -5,7 +5,7 @@ $(document).ready(function() {
                 zoomType: 'xy',
             },
             title: {
-                text: 'Games Sales Units according to Genre'
+                text: 'Games Sales Units according to ' + category
             },
             subtitle: {
                 text: 'Source: vgsales'
@@ -17,7 +17,7 @@ $(document).ready(function() {
                 },
                 categories: x3
             },
-		yAxis: {"title": {"text": 'Sale Units in million'}},
+		yAxis: {"title": {"text": 'Unit Sales (million)'}},
 		tooltip: {
                 formatter: function() {
                         return ''+

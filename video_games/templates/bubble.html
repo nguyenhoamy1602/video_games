@@ -4,64 +4,22 @@
 <!-- Add these JavaScript inclusions for highcharts -->
 {% include "partials/highcharts.html" %}
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="../static/js/bubble.js"></script>
 {% endblock %}
 
 {% block content %} 
 {% include "partials/nav.html" %}
-<div id="container" style="width: 90%; height: 90%; margin: 0 auto"></div>
-<script language="JavaScript">
-
-Highcharts.chart('container', {
-
-    chart: {
-        type: 'bubble',
-        plotBorderWidth: 1,
-        zoomType: 'xy'
-    },
-
-    legend: {
-        enabled: true,
-    },
-
-    title: {
-        text: "Top 1000 Video Game's Sales and Year Released"
-    },
-
-    yAxis: {
-        min: 0,
-        max: 100,
-        title: {
-            text: "Sales in million",
-            style: {
-                fontSize: '20px'
-            }, 
-        }
-    },
-
-    tooltip: {
-        useHTML: true,
-        headerFormat: '<table>',
-        pointFormat: '<tr><th colspan="2"><h3>{point.name}</h3></th></tr>' +
-            '<tr><th>Publisher:</th><td>{point.publisher}</td></tr>' +
-            '<tr><th>Genre: </th><td>{point.genre}</td></tr>' +
-            '<tr><th>Year:</th><td>{point.x}</td></tr>' +
-            '<tr><th>Sale(million):</th><td>{point.y}</td></tr>',
-        footerFormat: '</table>',
-        followPointer: true
-    },
-
-    plotOptions: {
-        series: {
-            dataLabels: {
-                enabled: true,
-                format: '{point.name}'
-            }
-        }
-    },
-
-    series: {{series|safe}}
-
-});
+<div class="row">
+	<div class="col-md-12" style="text-align: center">
+	<h1>Bubble Chart</h1>
+	<h3>Click on the Legend to select Genre you want to inspect</h3>
+	<h3>Or drag your mouse to zoom in</h3>
+	</div>
+</div>
+<div id="{{bubble_id|safe}}" style="width: 90%; height: 900px; margin: 0 auto; padding: 50px"></div>
+<script>
+	var bubble = {{bubble_id|safe}}
+	var series = {{series|safe}}
 </script>
 {% include "partials/footer.html" %}
 {% endblock %}  

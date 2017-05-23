@@ -18,3 +18,23 @@ input {
 	color: black;
 }
 
+.chart {
+	width: 80%; 
+	height: 80%; 
+	margin: 0 auto; 
+	padding-bottom: 50px;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+p {
+	text-align: center;
+	font-weight: 500;
+	font-size: x-large;
+	padding: 50px;
+}
+

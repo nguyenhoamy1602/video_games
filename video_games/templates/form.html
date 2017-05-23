@@ -1,8 +1,9 @@
+
 {% extends "layout.html" %}
 {% block title %} Pivot Table Form {% endblock %}
 {% block head %}
     <script src="../static/form.js"></script>
-{% endblock %}    
+{% endblock %}
 
 {% block content %} 
 {% include "partials/nav.html" %}
@@ -13,21 +14,21 @@
             <div class="col-md-2 col-sm-3">
                 Select Column:
                 <br>
-                <select name="cat1">
-                  <option >Platform</option>
-                  <option>Year</option>
-                  <option>Genre</option>
-                  <option >Publisher</option>
+                <select name="cat1" id="cat1" onChange="checkAlert1(this.value)">
+                  <option value="Platform">Platform</option>
+                  <option value="Year">Year</option>
+                  <option value="Genre">Genre</option>
+                  <option value="Publisher">Publisher</option>
                 </select>
             </div>
               <div class="col-md-2 col-sm-3">
                 Select Row:
                   <br>
-                 <select name="cat2">
-                  <option>Platform</option>
-                  <option>Year</option>
-                  <option>Genre</option>
-                  <option>Publisher</option>
+                 <select name="cat2" id="cat2" onChange="checkAlert2(this.value)">
+                  <option value="Platform">Platform</option>
+                  <option value="Year">Year</option>
+                  <option value="Genre">Genre</option>
+                  <option value="Publisher">Publisher</option>
                 </select>
 
             </div>
@@ -77,10 +78,22 @@
                 <br>
             </div>
             <div class="col-md-2col-sm-1"></div>
+
+            <div class="row">
+                <div class="col-md-3 col-sm-3"></div>
+                    <div class="col-md-6 col-sm-6">
+                        <div id = "warning">
+                           <div class="alert alert-danger">
+                              <strong>STOP</strong> Row and Column Value cannot be the same!
+                            </div>
+                        </div>
+                    </div>
+                 <div class="col-md-3 col-sm-3"></div>
+            </div>
             <div class="row">
                 <div class="col-md-5 col-sm-5"></div>
                 <div class="col-md-2 col-sm-2">
-                    <input type="submit" value="Submit">
+                    <button type="submit" id="submit" disabled style="background-color:black; color:white;"> Waiting ...</button>
                 </div>
                  <div class="col-md-5 col-sm-5"></div>
             </div>

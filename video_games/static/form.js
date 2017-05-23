@@ -18,13 +18,46 @@ var optionsByCategory = {
     "Westwood Studios"]
 }
 
+var rcLabels = [ "Platform", "Year", "Genre","Publisher"]
+
+
     function change(value) {
-        if (value.length == 0 || value == "none") document.getElementById("options").innerHTML = "<option value="" selectedx></option>";
+        if (value.length == 0 || value == "none") document.getElementById("options").innerHTML = "<option selected></option>";
         else {
             var catOptions = "";
             for (categoryId in optionsByCategory[value]) {
                 catOptions += "<option>" + optionsByCategory[value][categoryId] + "</option>";
             }
             document.getElementById("options").innerHTML = catOptions;
+        }
+    }
+
+
+    function checkAlert1(value){
+        var cat2Val = document.getElementById("cat2").value
+        var x = document.getElementById('warning');
+        if(value === cat2Val){
+            x.style.display = 'block';
+           document.getElementById('submit').disabled = true;
+           document.getElementById('submit').innerHTML = 'Waiting ... ';
+        } else{
+            x.style.display = 'none';
+            document.getElementById('submit').disabled = false;
+             document.getElementById('submit').innerHTML = 'Game Start!';
+        }
+    }
+
+
+    function checkAlert2(value){
+        var cat1Val = document.getElementById("cat1").value
+        var x = document.getElementById('warning');
+        if(value === cat1Val){
+            x.style.display = 'block';
+            document.getElementById('submit').disabled = true;
+           document.getElementById('submit').innerHTML = 'Waiting ... ';
+        } else{
+            x.style.display = 'none';
+            document.getElementById('submit').disabled = false;
+             document.getElementById('submit').innerHTML = 'Game Start!';
         }
     }
