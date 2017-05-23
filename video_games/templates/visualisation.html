@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %} Visualisation {% endblock %}
+{% block title %} Hypothesis {% endblock %}
 {% block head %}
 <!-- Add these JavaScript inclusions for highcharts -->
 {% include "partials/highcharts.html" %}
@@ -9,16 +9,15 @@
 {% include "partials/nav.html" %}
 <div class="row">
     <div class="col-md-12" style="text-align: center">
-        <h1>Visualisation</h1>
-        <h3>Some of our insights</h3>
-        <h3>Or drag your mouse to zoom in</h3>
+        <h1>Hypothesis</h1>
+        <h3>The best year, platform, genre and publisher to release a game?</h3>
     </div>   
 </div>
 <div class="row"> 
 <div class = "col-md-6 vcenter">
-<p> Global Game Sale increases across the years. <br> 
-Highly correlate with number of games released. <br>
-Mean Unit Sales per game has been relatively constant in recent years.
+<p id = "analysis"> The best year to release game is 2008 with highest Global Sales. <br> 
+However, the year with the highest mean unit sales is 1989. <br>
+Though total sales have decreased in recent year, mean unit sales per game has been relatively constant.
 </p>
 </div><!--
     --><div class="col-md-6 col-xs-12 vcenter">
@@ -66,6 +65,7 @@ Mean Unit Sales per game has been relatively constant in recent years.
     var category = "{{cat|safe}}"
     var x3 = {{x3|safe}}
     var series3 = {{ series3|safe }}
+
 </script>
 <script src="../static/js/scatter.js"></script>
 <script src="../static/js/line.js"></script>
