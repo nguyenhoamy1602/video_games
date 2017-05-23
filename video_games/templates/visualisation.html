@@ -15,17 +15,18 @@
     </div>
 </div>
 		<row>
-		<div id="{{chartID_1|safe }}"  style="width: 800px; height: 400px; margin: 0 auto"></div>
+		<div class = "chart", id="{{chartID_1|safe}}"></div>
 		</row>
 		<row>
-        <div id="{{chartID_2|safe}}" style="width: 800px; height: 400px; margin: 0 auto"></div>
+        <div class = "chart", id="{{chartID_2|safe}}"></div>
+
         </row>
-        <div id="{{ chartID_3|safe }}" style="width: 800px; height: 400px; margin: 0 auto"></div>
+        <div class = "chart", id="{{ chartID_3|safe}}"></div>
 
         <script>
             var chart_1 = {{chartID_1|safe}}
-            var x1 = {{x1|safe}}
-            var y1 = {{y1|safe}}
+            var year1 = {{year1|safe}}
+            var series1 = {{series1|safe}}
 
             var chart_2 = {{chartID_2|safe}}
             var year = {{year|safe}}
@@ -33,6 +34,7 @@
 
 
             var chart_3 = {{ chartID_3|safe }}
+            var category = "{{cat|safe}}"
             var x3 = {{x3|safe}}
             var series3 = {{ series3|safe }}
         </script>

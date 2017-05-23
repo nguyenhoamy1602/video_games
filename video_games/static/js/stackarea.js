@@ -19,28 +19,27 @@ $(document).ready(function() {
         },
         yAxis: {
             title: {
-                text: 'Sales Units'
+                text: 'Unit Sales (million)'
             }
         },
         tooltip: {
             split: true,
             valueSuffix: ' millions'
         },
-        plotOptions: {
-            area: {
-               stacking: 'normal',
-               marker: {
-                  radius: 2
-              },
-              lineWidth: 1,
-              states: {
-                  hover: {
-                     lineWidth: 1
-                 }
-             },
-             threshold: 0
-         }
-     },
+            plotOptions: {
+        area: {
+            marker: {
+                enabled: false,
+                symbol: 'circle',
+                radius: 2,
+                states: {
+                    hover: {
+                        enabled: true
+                    }
+                }
+            }
+        }
+    },
      series: series2
  });
 });

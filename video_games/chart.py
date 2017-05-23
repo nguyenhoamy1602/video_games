@@ -1,25 +1,24 @@
 import pandas as pd
 
 def line(df):
+    df = df[df.Year <= 2015]
+    aggFunc = ['count', 'sum', 'mean']
+    data = df.groupby('Year').agg({'Global_Sales': aggFunc}).round(2)
+    data = data.values.T.tolist()
+    year = sorted(list(df['Year'].unique().astype('int')))
+    return (year, data)
 
-    year_count = df.groupby('Year').count().reset_index()
-    year_count.Year = year_count.Year.astype('int')
 
-    # remove data after 2015
-    year_count = year_count[year_count.Year <= 2015]
-    x = year_count.Year.tolist()
-    y = year_count.Name.tolist()
-    return (x,y)
 
 def stack(df):
-    year_sale = df.groupby('Year')['NA_Sales','EU_Sales','JP_Sales','Other_Sales'].sum().reset_index().round(2)
+    year_sale = df.groupby('Year')['Global_Sales','NA_Sales','EU_Sales','JP_Sales','Other_Sales'].sum().reset_index().round(2)
     year_sale.Year = year_sale.Year.astype('int')
     # remove data after 2015
     year_sale = year_sale[year_sale.Year <= 2015]
     series = []
     data = year_sale.values.T.tolist()
     year = data[0]
-    region = ['North America', 'Europe', 'Japan', 'Other']
+    region = ['Global', 'North America', 'Europe', 'Japan', 'Other']
     for i in range(len(region)):
         dict = {}
         dict['name']= region[i]
@@ -27,18 +26,18 @@ def stack(df):
         series.append(dict)
     return (year, series)
 
-def scatter(df):
-    genre_list = sorted(list(df['Genre'].unique()))
+def scatter(df,cat):
+    cat_list = ['Activision', 'Arena Entertainment', 'Electronic Arts', 'Konami Digital Entertainment', 'Microsoft Game Studios', 'Namco Bandai Games', 'Nintendo', 'Palcom', 'Red Orb', 'RedOctane', 'Sega', 'Sony Computer Entertainment', 'Sony Computer Entertainment Europe', 'THQ', 'Take-Two Interactive', 'UEP Systems', 'Ubisoft', 'Valve', 'Westwood Studios']
     series = []
-    for i in range(len(genre_list)):
+    for i in range(len(cat_list)):
         dict = {}
-        df1 = df[df['Genre']==genre_list[i]][['Global_Sales','Name']]
+        df1 = df[df[cat]==cat_list[i]][['Global_Sales','Name']]
         sales_names = df1.values.tolist()
         for u in range(len(sales_names)):
             sales_names[u].insert(0,i)
         dict['data']=sales_names
         series.append(dict)
-    return (genre_list, series)
+    return (cat_list, series)
 
 
 def bubble_chart(df):

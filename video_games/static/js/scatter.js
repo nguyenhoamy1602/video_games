@@ -5,7 +5,7 @@ $(document).ready(function() {
                 zoomType: 'xy',
             },
             title: {
-                text: 'Games Sales Units according to Genre'
+                text: 'Games Sales Units according to ' + category
             },
             subtitle: {
                 text: 'Source: vgsales'
