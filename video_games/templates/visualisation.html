@@ -29,9 +29,19 @@
         <option value="Platform">Platform</option>
     </select>
     </div> 
-<p id = "analysis"> The best year to release game is 2008 with highest Global Sales. <br> 
+<p class="drop-down-show-hide" id = "Year"> The best year to release game is 2008 with highest Global Sales. <br> 
 However, the year with the highest mean unit sales is 1989. <br>
 Though total sales have decreased in recent year, mean unit sales per game has been relatively constant.
+</p>
+<p class="drop-down-show-hide" id = "Genre"> The most prolific genre is Action. <br> 
+However, the genre with highest average sales is Platform. <br>
+</p>
+<p class="drop-down-show-hide" id = "Publisher"> While Electronic Arts make the most game, <br> 
+Nintendo earns the most from the game market, <br>
+but Palcom has the highest average sales.
+</p>
+<p class="drop-down-show-hide" id = "Platform"> PS2 has the most games released and highest global sales. <br> 
+GB has the highest average sales. <br>
 </p>
 </div>
 </div>
@@ -81,6 +91,7 @@ Its sales is closely related to the Global Sales. <br>
     var series3 = {{ series3|safe }}
 
 </script>
+<script src="../static/js/text.js"></script>
 <script src="../static/js/scatter.js"></script>
 <script src="../static/js/line.js"></script>
 <script src="../static/js/stackarea.js"></script>
