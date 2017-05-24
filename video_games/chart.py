@@ -1,25 +1,57 @@
 import pandas as pd
 
-def chart1(df):
+aggFunc = ['count', 'sum', 'mean']
+categories = ["Genre", "Publisher", "Platform", "Year"]
 
-    year_count = df.groupby('Year').count().reset_index()
-    year_count.Year = year_count.Year.astype('int')
+def year_data(df):
+    data = df.groupby("Year").agg({'Global_Sales': aggFunc}).round(2)
+    dataset = data.values.T.tolist()
+    dataset.insert(0, data.index.tolist())
+    return dataset
 
-    # remove data after 2015
-    year_count = year_count[year_count.Year <= 2015]
-    x = year_count.Year.tolist()
-    y = year_count.Name.tolist()
-    return (x,y)
+def aggregate(df, category):
+    data = df.groupby(category).agg({'Global_Sales': aggFunc}).round(2)
+    data_dict = {}
+    category_list = data.index.tolist()
+    values = data.values.tolist()
+    for i in range(len(category_list)):
+        data_dict[category_list[i]] = values[i]
+    return data, data_dict
 
-def chart2(df):
-    year_sale = df.groupby('Year')['NA_Sales','EU_Sales','JP_Sales','Other_Sales'].sum().reset_index().round(2)
+def top_performer(df, category):
+    data, data_dict = aggregate(df, category)
+    top_category = []
+    for i in aggFunc:
+        top10 = data["Global_Sales"][i].sort_values(ascending=False).head(10)
+        top_category.append(top10.index.tolist())
+    top_perform = [item for sublist in top_category for item in sublist]
+    top_perform = sorted(list(set(top_perform)))
+    dataset = []
+    for i in top_perform:
+        dataset.append(data_dict[i])
+    dataset = [list(x) for x in zip(*dataset)]
+    dataset.insert(0,top_perform)
+    return top_perform, dataset
+
+def combined(df):
+    combined_data = {}
+    for i in categories:
+        if i == 'Year':
+            combined_data['Year'] = year_data(df)
+        else:
+            dataset = top_performer(df, i)[1]
+            combined_data[i] = dataset
+    return combined_data 
+
+def stack(df):
+    year_sale = df.groupby('Year')['Global_Sales','NA_Sales','EU_Sales','JP_Sales','Other_Sales'].sum().reset_index().round(2)
     year_sale.Year = year_sale.Year.astype('int')
     # remove data after 2015
     year_sale = year_sale[year_sale.Year <= 2015]
     series = []
     data = year_sale.values.T.tolist()
     year = data[0]
-    region = ['North America', 'Europe', 'Japan', 'Other']
+    region = ['Global', 'North America', 'Europe', 'Japan', 'Other']
     for i in range(len(region)):
         dict = {}
         dict['name']= region[i]
@@ -27,21 +59,29 @@ def chart2(df):
         series.append(dict)
     return (year, series)
 
-def chart3(df):
-    genre_list = sorted(list(df['Genre'].unique()))
+def scatter(df,category):
+    top_perform = top_performer(df, category)[0]
     series = []
-    for i in range(len(genre_list)):
+    for i in range(len(top_perform)):
         dict = {}
-        df1 = df[df['Genre']==genre_list[i]][['Global_Sales','Name']]
+        df1 = df[df[category]==top_perform[i]][['Global_Sales','Name']]
         sales_names = df1.values.tolist()
         for u in range(len(sales_names)):
             sales_names[u].insert(0,i)
         dict['data']=sales_names
-        series.append(dict)
-    return (genre_list, series)
+        series.append(dict)   
+    return top_perform, series
+
+def scatter_data(df):
+    scatter_data = {}
+    for i in categories:
+        scatter_data[i] = list(scatter(df, i))
+    return scatter_data
 
 
-def chart4(df):
+
+
+def bubble_chart(df):
     genre_list = sorted(list(df['Genre'].unique()))
     series = []
 

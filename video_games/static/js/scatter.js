@@ -1,33 +1,29 @@
-$(document).ready(function() {
-	$(chart_3).highcharts({
-		chart: {
-                type: 'scatter',
-                zoomType: 'xy',
+var options = {
+    chart: {
+        renderTo: chart_3,
+        defaultSeriesType: 'scatter',
+        zoomType: 'xy',
             },
             title: {
-                text: 'Games Sales Units according to Genre'
+                text: 'Top 1000 Games Sales According to Year'
             },
             subtitle: {
                 text: 'Source: vgsales'
             },
-		xAxis: {
-                title: {
-                    enabled: true,
-                    text: 'Genre'
-                },
-                categories: x3
+        xAxis: {
+                categories: series3['Year'][0]
             },
-		yAxis: {"title": {"text": 'Sale Units in million'}},
-		tooltip: {
+        yAxis: {"title": {"text": 'Unit Sales (million)'}},
+        tooltip: {
                 formatter: function() {
                         return ''+
                         this.point.series.userOptions.data[this.point.index][2] + ' ' + this.y +' million';
                 }
             },
         legend: {
-        	enabled: false
+            enabled: false
         },
-		plotOptions: {
+        plotOptions: {
                 scatter: {
                     marker: {
                         symbol:'circle',
@@ -47,7 +43,17 @@ $(document).ready(function() {
                         }
                     }
                 }
-            },
-		series: series3
-	});
+        },
+    series: series3['Year'][1],
+};
+var chart = new Highcharts.Chart(options);
+
+$('#travel-select').on('change', function(){
+    //alert('f')
+    var data_option = $('#travel-select').val();
+    options.series = series3[data_option][1];
+    options.title.text = 'Top 1000 Games Sales According to' + data_option;
+    options.xAxis.categories = series3[data_option][0];
+    var chart = new Highcharts.Chart(options);    
 });
+

@@ -1,35 +1,97 @@
 {% extends "layout.html" %}
-{% block title %} Visualisation {% endblock %}
+{% block title %} Hypothesis {% endblock %}
 {% block head %}
 <!-- Add these JavaScript inclusions for highcharts -->
 {% include "partials/highcharts.html" %}
 {% endblock %}
 
 {% block content %}	
-{% include "partials/nav.html" %}	
-		<!-- 3. Add the container -->
-		<row>
-		<div id="{{chartID_1|safe }}"  style="width: 800px; height: 400px; margin: 0 auto"></div>
-		</row>
-		<row>
-        <div id="{{chartID_2|safe}}" style="width: 800px; height: 400px; margin: 0 auto"></div>
-        </row>
-        <div id="{{ chartID_3|safe }}" style="width: 800px; height: 400px; margin: 0 auto"></div>
+{% include "partials/nav.html" %}
+<div class="row">
+    <div class="col-md-4">
+        <img src="../static/img/cloud.png" height=200px width=200px style="position:relative; left:50px">
+    </div>
+    <div class="col-md-4" style="text-align: center">
+        <h1 style="font-family:Arcade; display:inline;">Hypothesis</h1>
+        <h3>The best year, platform, genre and publisher to release a game?</h3>
+    </div>   
+    <div class="col-md-4" style="text-align:right">
+        <img src="../static/img/cloud.png" height=200px width=200px style="position:relative;right:50px;transform:scaleX(-1)">
+    </div>
+</div>
+<div class="row row-centered"> 
+<div class = "col-xs-6 col-centered">
+    <div align="center">
+    <select id="travel-select">
+        <option value="Year">Year</option>
+        <option value="Genre">Genre</option>
+        <option value="Publisher">Publisher</option>
+        <option value="Platform">Platform</option>
+    </select>
+    </div> 
+<p class="drop-down-show-hide" id = "Year"> The best year to release game is 2008 with highest Global Sales. <br> 
+However, the year with the highest mean unit sales is 1989. <br>
+Though total sales have decreased in recent year, mean unit sales per game has been relatively constant.
+</p>
+<p class="drop-down-show-hide" id = "Genre"> The most prolific genre is Action. <br> 
+However, the genre with highest average sales is Platform. <br>
+</p>
+<p class="drop-down-show-hide" id = "Publisher"> While Electronic Arts make the most game, <br> 
+Nintendo earns the most from the game market, <br>
+but Palcom has the highest average sales.
+</p>
+<p class="drop-down-show-hide" id = "Platform"> PS2 has the most games released and highest global sales. <br> 
+GB has the highest average sales. <br>
+</p>
+</div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-xs-12">
 
-        <script>
-            var chart_1 = {{chartID_1|safe}}
-            var x1 = {{x1|safe}}
-            var y1 = {{y1|safe}}
+    <div class = "chart", id="{{chartID_1|safe}}"></div>
+</div>
+<div class="col-md-6">  
+    <div class = "chart", id="{{chartID_3|safe}}"></div>
+</div>
+</div>
+</div>
 
-            var chart_2 = {{chartID_2|safe}}
-            var year = {{year|safe}}
-            var series2 = {{series2|safe}}
+
+<div class="row"> 
+<div class = "col-md-6">
+</div>
+<div class="col-md-6">  
+    
+</div>
+</div>
+    
+<div class="row"> 
+<div class = "col-md-6" align='center'>
+<p style="padding-left: 120px"> The best region to sell game is North America. <br> 
+Its sales is closely related to the Global Sales. <br>
+</p>
+</div>
+<div class="col-md-6">   
+    <div class = "chart", id="{{chartID_2|safe}}"></div>
+</div>
+</div>
 
 
-            var chart_3 = {{ chartID_3|safe }}
-            var x3 = {{x3|safe}}
-            var series3 = {{ series3|safe }}
-        </script>
+
+<script>
+    var chart_1 = {{chartID_1|safe}}
+    var series1 = {{series1|safe}}
+
+    var chart_2 = {{chartID_2|safe}}
+    var year = {{year|safe}}
+    var series2 = {{series2|safe}}
+
+
+    var chart_3 = {{ chartID_3|safe }}
+    var series3 = {{ series3|safe }}
+
+</script>
+<script src="../static/js/text.js"></script>
 <script src="../static/js/scatter.js"></script>
 <script src="../static/js/line.js"></script>
 <script src="../static/js/stackarea.js"></script>
