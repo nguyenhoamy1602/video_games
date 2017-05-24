@@ -47,21 +47,26 @@ def pivot():
         value = request.form['value']
         filter = request.form['filter']
         option = request.form['options']
+
+        #pivots based on no filters
         if filter == 'none':
             table = pd.pivot_table(df, index=[str(cat1)], columns=[str(cat2)],
                                    values=[str(value)],
                                    aggfunc=aggFunctions[aggr], fill_value="")
+        #pivots based on year, it's different from next one bc Year was only filter with ints
         elif filter == 'Year':
             table = pd.pivot_table(df[df[filter] == int(option)], index=[str(cat1)], columns=[str(cat2)],
                                    values=[str(value)],
                                    aggfunc=aggFunctions[aggr], fill_value="")
+        #pivots based on any other filter
         else:
             table = pd.pivot_table(df[df[filter] == (option)], index=[str(cat1)], columns=[str(cat2)],
                                    values=[str(value)],
                                    aggfunc=aggFunctions[aggr], fill_value="")
 
-
+    #converts the pivot table into format that highcharts can understand
     xLabel, yLabel, values = convert.convertCSVFormat(table.to_csv(), cat1, cat2)
+    # if y length or x length is size one then use predefined sizes, otherwise each cell should be at least 40x60px
     if len(yLabel)==1:
         height = 250
         width = len(xLabel)*60
@@ -71,7 +76,7 @@ def pivot():
     else:
         height = len(yLabel)*40
         width = len(xLabel)*60
-
+    # The title is different for count bc it's not counting in millions
     if aggr == "count":
         title = "Number of Video games sold in " +valueLabels[str(value)] +  "based on " + str(cat1) \
                 + " and " + str(cat2)
