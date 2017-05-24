@@ -29,7 +29,7 @@ def top_performer(df, category):
     dataset = []
     for i in top_perform:
         dataset.append(data_dict[i])
-    dataset = map(list, zip(*dataset))
+    dataset = [list(x) for x in zip(*dataset)]
     dataset.insert(0,top_perform)
     return top_perform, dataset
 
