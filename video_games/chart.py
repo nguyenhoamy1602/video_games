@@ -1,31 +1,49 @@
+# Functions to get data for Highcharts
 import pandas as pd
 
 aggFunc = ['count', 'sum', 'mean']
 categories = ["Genre", "Publisher", "Platform", "Year"]
 
 def year_data(df):
+    """Get Global Sales count, sum and mean according to Year into a list"""
     data = df.groupby("Year").agg({'Global_Sales': aggFunc}).round(2)
+
+    # turn data into list
     dataset = data.values.T.tolist()
     dataset.insert(0, data.index.tolist())
     return dataset
 
 def aggregate(df, category):
+    """Get Global Sales count, sum and mean 
+    according to category other than year and form a dict"""
     data = df.groupby(category).agg({'Global_Sales': aggFunc}).round(2)
-    data_dict = {}
+    
     category_list = data.index.tolist()
     values = data.values.tolist()
+
+    # add data to dictionary
+    data_dict = {}
     for i in range(len(category_list)):
         data_dict[category_list[i]] = values[i]
     return data, data_dict
 
 def top_performer(df, category):
+    """Get top 10 performer in mean, sum and count, 
+    then create a unique list"""
+
     data, data_dict = aggregate(df, category)
     top_category = []
+
+    # get top 10 for each category
     for i in aggFunc:
         top10 = data["Global_Sales"][i].sort_values(ascending=False).head(10)
         top_category.append(top10.index.tolist())
+
+    # create a unique list of top performer   
     top_perform = [item for sublist in top_category for item in sublist]
     top_perform = sorted(list(set(top_perform)))
+
+    # create a list of dataset for top performer
     dataset = []
     for i in top_perform:
         dataset.append(data_dict[i])
@@ -34,6 +52,7 @@ def top_performer(df, category):
     return top_perform, dataset
 
 def combined(df):
+    """Combine all datas together for mixed chart"""
     combined_data = {}
     for i in categories:
         if i == 'Year':
@@ -43,15 +62,20 @@ def combined(df):
             combined_data[i] = dataset
     return combined_data 
 
-def stack(df):
-    year_sale = df.groupby('Year')['Global_Sales','NA_Sales','EU_Sales','JP_Sales','Other_Sales'].sum().reset_index().round(2)
+def area(df):
+    """Get data for area chart - regional sales"""
+    year_sale = df.groupby('Year')['Global_Sales','NA_Sales',
+    'EU_Sales','JP_Sales','Other_Sales'].sum().reset_index().round(2)
     year_sale.Year = year_sale.Year.astype('int')
+
     # remove data after 2015
     year_sale = year_sale[year_sale.Year <= 2015]
     series = []
     data = year_sale.values.T.tolist()
     year = data[0]
     region = ['Global', 'North America', 'Europe', 'Japan', 'Other']
+
+    # update data for each region in a dictionary
     for i in range(len(region)):
         dict = {}
         dict['name']= region[i]
@@ -60,6 +84,7 @@ def stack(df):
     return (year, series)
 
 def scatter(df,category):
+    """Get data for scatter chart - Global Sales according to Category"""
     top_perform = top_performer(df, category)[0]
     series = []
     for i in range(len(top_perform)):
@@ -82,14 +107,18 @@ def scatter_data(df):
 
 
 def bubble_chart(df):
+    """Get data according to Genre """
     genre_list = sorted(list(df['Genre'].unique()))
     series = []
 
     for i in range(len(genre_list)):
+        # create a dictionary for each genre
         genre_series = {}
         genre_data = []
         
-        df1 = df[df['Genre']==genre_list[i]][['Year','Global_Sales','Name','Publisher']]
+        # get data and add to dictionary
+        df1 = df[df['Genre']==genre_list[i]][['Year','Global_Sales',
+        'Name','Publisher']]
         values = df1.values.tolist()
         for value in values:
             dict = {}
