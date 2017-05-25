@@ -20,7 +20,7 @@ var optionsByCategory = {
 
 var rcLabels = [ "Platform", "Year", "Genre","Publisher"]
 
-
+// changes the filter value options based on the selection made
     function change(value) {
         if (value.length == 0 || value == "none") document.getElementById("options").innerHTML = "<option selected></option>";
         else {
@@ -32,7 +32,7 @@ var rcLabels = [ "Platform", "Year", "Genre","Publisher"]
         }
     }
 
-
+//shows/ hides the warning/ability to continue based on the selections made for column
     function checkAlert1(value){
         var cat2Val = document.getElementById("cat2").value
         var x = document.getElementById('warning');
@@ -47,7 +47,7 @@ var rcLabels = [ "Platform", "Year", "Genre","Publisher"]
         }
     }
 
-
+//shows/hides warning / ability to continue based on row selections
     function checkAlert2(value){
         var cat1Val = document.getElementById("cat1").value
         var x = document.getElementById('warning');

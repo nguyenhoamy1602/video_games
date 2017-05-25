@@ -98,16 +98,17 @@ $(document).ready(function() {
     }]
 });
 });
+$('.drop-down-show-hide').hide();
+$('#Year').show();
 var data_option = $('#travel-select').val();
     $("#travel-select").change(function () {
         var data_option = $(this).val();
         var chart = $(chart_1).highcharts();  
-        var str = "";
         var i;
         //change chart data
-        chart.xAxis[0].setCategories(series1[data_option][0]);
+        chart.xAxis[0].setCategories(series1[data_option][0],false);
         for(i=0;i<3;i++){
-            chart.series[i].setData(series1[data_option][i+1]);
+            chart.series[i].setData(series1[data_option][i+1],false);
         }
         if (data_option==="Year"){
             chart.setTitle({text:"Global Game Sales By Year"});
@@ -115,22 +116,7 @@ var data_option = $('#travel-select').val();
             chart.setTitle({text:"Top Performing " + data_option});
         }
         $(chart_1).highcharts().redraw();
-        $( "select option:selected" ).each(function() {
-        str += text[data_option] + " ";
-    });
-    $( "#analysis" ).text( str );
+        $( ".drop-down-show-hide").hide();
+        $('#' + this.value).show();
     }); 
 
-var text= {
-    "Year": "The best year to release game is 2008 with highest Global Sales. " +
-            "However, the year with the highest mean unit sales is 1989. " + 
-            "Though total sales have decreased in recent year, " + 
-            "mean unit sales per game has been relatively constant." 
-    , "Genre": "The most prolific genre is Action. " + 
-            "However, the genre with highest average sales is Platform."
-    , "Publisher": "While Electronic Arts make the most game, " + 
-                "Nintendo earns the most from the game market, " +
-                "but Palcom has the highest average sales."
-    , "Platform": "PS2 has the most games released and highest global sales. " +
-                "GB has the highest average sales" 
-};
