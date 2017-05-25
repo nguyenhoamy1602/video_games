@@ -24,3 +24,6 @@ Our Application:
 Tools:
 - Pandas - To process data for pivot table and visualisations
 - Highcharts - To draw interactive charts on website
+- Flask - the structure for our application
+- Jinja2 templates - providing templates for our HTML
+- Bootstraps - Our CSS styling
