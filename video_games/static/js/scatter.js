@@ -1,6 +1,6 @@
 var scatter_options = {
     chart: {
-        renderTo: chart_3,
+        renderTo: scatter_chart,
         defaultSeriesType: 'scatter',
         zoomType: 'xy',
             },
@@ -11,10 +11,10 @@ var scatter_options = {
                 text: 'Source: vgsales'
             },
         xAxis: {
-                categories: series3['Year'][0],
+                categories: scatter_series['Year'][0],
                 tickPositioner: function() {
                 var result = [];
-                for(i = 0; i < series3['Year'][0].length; i++)
+                for(i = 0; i < scatter_series['Year'][0].length; i++)
                     result.push(i);
                 return result;
                 }
@@ -50,16 +50,16 @@ var scatter_options = {
                     }
                 }
         },
-    series: series3['Year'][1],
+    series: scatter_series['Year'][1],
 };
 var chart = new Highcharts.Chart(scatter_options);
 
 $('#travel-select').on('change', function(){
     //alert('f')
     var data_option = $('#travel-select').val();
-    scatter_options.series = series3[data_option][1];
+    scatter_options.series = scatter_series[data_option][1];
     scatter_options.title.text = 'Top 1000 Global Games Sales According to ' + data_option;
-    scatter_options.xAxis.categories = series3[data_option][0];
+    scatter_options.xAxis.categories = scatter_series[data_option][0];
     var chart = new Highcharts.Chart(scatter_options);    
 });
 

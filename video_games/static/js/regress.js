@@ -1,5 +1,5 @@
 $(function() {
-  $(chart_4).highcharts({
+  $(regress_chart).highcharts({
     chart: {
       type: 'scatter',
       zoomType: 'xy'
@@ -34,7 +34,7 @@ $(function() {
     series: [{
         type: 'line',
         name: 'Regression Line',
-        data: series4['Year'][0],
+        data: regress_series['Year'][0],
         marker: {
             enabled: false
         },
@@ -47,7 +47,7 @@ $(function() {
     }, {
         type: 'scatter',
         name: 'Observations',
-        data: series4['Year'][1],
+        data: regress_series['Year'][1],
         marker: {
             radius: 4
         }
@@ -56,12 +56,12 @@ $(function() {
 });
     $("#travel-select").change(function () {
         var data_option = $(this).val();
-        var chart4 = $(chart_4).highcharts();  
+        var chart = $(regress_chart).highcharts();  
 
         //change chart data
-        chart4.series[0].setData(series4[data_option][0],false);
-        chart4.series[1].setData(series4[data_option][1],false);
-        chart4.setTitle({text:"Global Games Sales (in million) vs Number of Games Released by " + data_option});
+        chart.series[0].setData(regress_series[data_option][0],false);
+        chart.series[1].setData(regress_series[data_option][1],false);
+        chart.setTitle({text:"Global Games Sales (in million) vs Number of Games Released by " + data_option});
 
-        $(chart_4).highcharts().redraw();
+        $(regress_chart).highcharts().redraw();
     }); 

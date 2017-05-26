@@ -8,17 +8,16 @@
 {% include "partials/nav.html" %}
     <div id='content' class='row-fluid'>
       <div class="row">
-          <div class="col-md-4 col-sm-1"></div>
-          <div class="col-md-4 col-sm-1" style="text-align:center">
-            <h1>Pivot Table</h1>
-          </div>
-          <div class="col-md-4 col-sm-1"></div>
+        <div class="col-md-12" style="text-align: center">
+          <h1>Pivot Table</h1>
+        </div>
       </div>
-      <div class="row" style="position:relative; top:25px">
+      <div class="row row-centered">
         <form name="Item_1" action="/pivot" method='POST'>
-            <div class="col-md-1 col-sm-1"></div>
-            <div class="col-md-2 col-sm-3" style="text-align:center">
-               <h4> Select Column:</h4> 
+            <div class="col-md-2"></div>
+            <div class="col-md-2">
+                <h4>Select Column:</h4>
+                <br>
                 <select name="cat1" id="cat1" onChange="checkAlert1(this.value)">
                   <option value="Platform">Platform</option>
                   <option value="Year">Year</option>
@@ -26,8 +25,9 @@
                   <option value="Publisher">Publisher</option>
                 </select>
             </div>
-              <div class="col-md-2 col-sm-3" style="text-align:center">
-                  <h4>Select Row:</h4>
+              <div class="col-md-2">
+                <h4>Select Row:</h4>
+                  <br>
                  <select name="cat2" id="cat2" onChange="checkAlert2(this.value)">
                   <option value="Platform">Platform</option>
                   <option value="Year">Year</option>
@@ -36,9 +36,10 @@
                 </select>
 
             </div>
-               <div class="col-md-3 col-sm-3" style="text-align:left">
+               <div class="col-md-2">
                    <div class="row">
-                       <h4>Select an Value:</h4>
+                       <h4>Select Aggregation:</h4>
+                       <br>
                        <select name="aggr">
                            <option value="count">Count</option>
                           <option value="sum">Sum</option>
@@ -46,8 +47,10 @@
                           <option value="min">Minimum</option>
                           <option value="max">Maximum</option>
                         </select>
-
-                       <select name="value">
+                   </div>
+                   <div class="row">
+                        <br>
+                           <select name="value">
                           <option value="NA_Sales">North America</option>
                           <option value="EU_Sales" >Europe</option>
                           <option value="JP_Sales">Japan</option>
@@ -55,10 +58,12 @@
                           <option value="Global_Sales">Global</option>
                         </select>
                    </div>
+
             </div>
-               <div class="col-md-3 col-sm-2">
-                <div class="row" style="text-align:left">
+               <div class="col-md-2">
+                <div class="row">
                     <h4>Select Filter:</h4>
+                    <br>
                     <select name="filter" id="filter" onChange="change(this.value)">
                         <option value="none" selected> None</option>
                         <option value="Platform">Platform</option>
@@ -67,15 +72,18 @@
                         <option value="Publisher">Publisher</option>
                         <script> </script>
                     </select>
+                </div>
+                   <div class="row">
+                        <br>
                         <select name="options" id="options">
                             <option value="" selected></option>
                         </select>
                     </div>
                 <br>
             </div>
-            <div class="col-md-1 col-sm-1"></div>
+            <div class="col-md-2"></div>
 
-            <div class="row" style="position:relative; top:50px;">
+            <div class="row">
                 <div class="col-md-3 col-sm-3"></div>
                     <div class="col-md-6 col-sm-6">
                         <div id = "warning">
@@ -86,10 +94,10 @@
                     </div>
                  <div class="col-md-3 col-sm-3"></div>
             </div>
-            <div class="row" style="position:relative; top:50px;">
+            <div class="row">
                 <div class="col-md-5 col-sm-5"></div>
-                <div class="col-md-2 col-sm-2" style="text-align:center">
-                    <button type="submit" id="submit" class="btn btn-default btn-lg" disabled style="background-color:black; color:white;"> Waiting ...</button>
+                <div class="col-md-2 col-sm-2">
+                    <button type="submit" id="submit" disabled style="background-color:black; color:white;"> Waiting ...</button>
                 </div>
                  <div class="col-md-5 col-sm-5"></div>
             </div>
@@ -102,6 +110,5 @@
 
      </div>
 
-  </div>
 {% include "partials/footer.html" %}
 {% endblock %}  

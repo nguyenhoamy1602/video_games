@@ -24,8 +24,8 @@ input {
 }
 
 .chart {
-	width: 80%; 
-	height: 80%; 
+	width: 90%; 
+	height: 90%; 
 	margin: 0 auto; 
 	padding-bottom: 50px;
 }
@@ -39,7 +39,6 @@ input {
 p {
 	font-weight: 500;
 	font-size: large;
-	padding: 50px;
     text-align: center;
 }
 

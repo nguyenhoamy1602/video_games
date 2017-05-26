@@ -5,8 +5,7 @@ Created on Wed May 10 10:14:54 2017
 @author: Melody Chai, My Ngyuen, Alex Sosin
 """
 
-# Import all libraries needed for the tutorial
-# Import all libraries needed for the tutorial
+# Import all libraries needed for application
 from flask import Flask, request, render_template, redirect, url_for
 import pandas as pd
 import numpy as np
@@ -15,6 +14,7 @@ import json
 
 from video_games import app, convert, chart
 
+# Dataframe - remove N/A entries
 df = pd.read_csv('Data/vgsales.csv').dropna()
 
 aggFunctions = {'count':np.count_nonzero, 'sum':np.sum, 'avg':np.mean,
@@ -30,7 +30,6 @@ def index():
 
 @app.route("/data")
 def data():
-    #videogames = database.execute_query("""SELECT * FROM videogame""")
     videogames = df;
     return render_template("data.html", videogames=videogames)
 
@@ -95,18 +94,19 @@ def bubble():
 
 @app.route('/visualisation')
 def visual():
-    chartID_1 = 'chartID_1'
-    series1 = chart.combined(df)
-    chartID_2 = 'chartID_2'
-    year,series2 = chart.area(df)
-    chartID_3 = 'chart_ID_3'
-    series3 = chart.scatter_data(df[:1001])
-    chartID_4 = 'chart_ID_4'
-    series4 = chart.scatter_regress(df)
+    # get data for visualisation
+    chart_agg = 'chart_agg'
+    agg_series = chart.combined(df)
+    chart_region = 'chart_region'
+    year,region_series = chart.area(df)
+    chart_scatter = 'chart_scatter'
+    scatter_series = chart.scatter_data(df[:1001])
+    chart_regress = 'chart_regress'
+    regress_series = chart.scatter_regress(df)
 
-    return render_template('visualisation.html', chartID_1=chartID_1, series1=series1,
-        chartID_2=chartID_2, year=year, series2=series2, 
-        series3=series3, chartID_3=chartID_3, chartID_4=chartID_4, series4=series4)
+    return render_template('visualisation.html', chart_agg=chart_agg, agg_series=agg_series,
+        chart_region=chart_region, year=year, region_series=region_series, 
+        scatter_series=scatter_series, chart_scatter=chart_scatter, chart_regress=chart_regress, regress_series=regress_series)
 
 
 

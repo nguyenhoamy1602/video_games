@@ -19,9 +19,9 @@
         <img src="../static/img/cloud.png" height=200px width=200px style="position:relative;right:50px;transform:scaleX(-1)">
     </div>
 </div>
-<div class="row"> 
-    <div class = "col-md-6">
-        <div align="center">
+<div class="row row-centered"> 
+    <div class = "col-md-6 col-centered">
+        <div align="center" style="padding-bottom: 20px;">
             <select id="travel-select">
                 <option value="Year">Year</option>
                 <option value="Genre">Genre</option>
@@ -29,45 +29,55 @@
                 <option value="Platform">Platform</option>
             </select>
         </div> 
-        <p class="drop-down-show-hide" id = "Year"> The best year to release game is 2008 with highest Global Sales. <br> 
+        <p class="drop-down-show-hide" id = "Year"> 
+            The best year to release games is 2008 with highest Global Sales. <br> 
             However, the year with the highest mean unit sales is 1989. <br>
-            Though total sales have decreased in recent year, mean unit sales per game has been relatively constant.
+            Every year, there is usually a game that is selling better than the rest. <br>There is also a high correlation between the number of games released and sales in the year.
         </p>
-        <p class="drop-down-show-hide" id = "Genre"> The most prolific genre is Action. <br> 
+        <p class="drop-down-show-hide" id = "Genre"> 
+            The most prolific genre is Action. <br> 
             However, the genre with highest average sales is Platform. <br>
+            For each genre, there are usually a few games with higher sales than the rest.
+            <br>There is also a general correlation between the number of games released by genre and the sale. 
         </p>
-        <p class="drop-down-show-hide" id = "Publisher"> While Electronic Arts make the most game, <br> 
-            Nintendo earns the most from the game market, <br>
-            but Palcom has the highest average sales.
+        <p class="drop-down-show-hide" id = "Publisher"> 
+            While Electronic Arts make the most game, Nintendo earns the most from the game market, but Palcom has the highest average sales. <br>
+            Except for Nintendo with Wii Sports, there isn't much anomaly in sales for publishers. 
+
         </p>
-        <p class="drop-down-show-hide" id = "Platform"> PS2 has the most games released and highest global sales. <br> 
-            GB has the highest average sales. <br>
+        <p class="drop-down-show-hide" id = "Platform"> 
+            PS2 has the most games released and highest global sales. <br> 
+            GB and NES have the highest average sales due to presence of a few anomalies sales and few number of games releasd. <br>
+
         </p>
-    </div>
-    <div class="col-md-6 col-xs-12">
-        <div class = "chart", id="{{chartID_1|safe}}"></div>
+        <p> Zoom in or Hover to find out more </p>
     </div>
 </div>
 <div class="row">
-    <div class="col-md-6 col-xs-12">
-
-        <div class = "chart", id="{{chartID_4|safe}}"></div>
+    <div class="col-md-4 col-xs-12">
+        <div class = "chart", id="{{chart_agg|safe}}"></div>
     </div>
-    <div class="col-md-6">  
-        <div class = "chart", id="{{chartID_3|safe}}"></div>
+    <div class="col-md-4 col-xs-12">
+
+        <div class = "chart", id="{{chart_regress|safe}}"></div>
+    </div>
+    <div class="col-md-4 col-xs-12">  
+        <div class = "chart", id="{{chart_scatter|safe}}"></div>
     </div>
 </div>
 </div>
 
-<div class="row"> 
-    <div class = "col-md-6" style="text-align:center; padding-left: 120px">
-        <h3>Something extra: </h3>
+<div class="row row-centered"> 
+    <div class = "col-md-6 col-centered">
+        <h3 style="text-align: center">The best region </h3>
         <p> The best region to sell game is North America. <br> 
             Its sales is closely related to the Global Sales. <br>
         </p>
     </div>
-    <div class="col-md-6">   
-        <div class = "chart", id="{{chartID_2|safe}}"></div>
+</div>
+<div class="row row-centered">
+    <div class="col-md-6 col-centered">   
+        <div class = "chart", id="{{chart_region|safe}}"></div>
     </div>
 </div>
 
@@ -85,25 +95,25 @@
 </div>
 
 <script>
-    var chart_1 = {{chartID_1|safe}}
-    var series1 = {{series1|safe}}
+    var agg_chart = {{chart_agg|safe}}
+    var agg_series = {{agg_series|safe}}
 
-    var chart_2 = {{chartID_2|safe}}
+    var region_chart = {{chart_region|safe}}
     var year = {{year|safe}}
-    var series2 = {{series2|safe}}
+    var region_series = {{region_series|safe}}
 
 
-    var chart_3 = {{ chartID_3|safe }}
-    var series3 = {{ series3|safe }}
+    var scatter_chart = {{ chart_scatter|safe }}
+    var scatter_series = {{ scatter_series|safe }}
 
-    var chart_4 = {{chartID_4|safe}}
-    var series4 = {{series4|safe}}
+    var regress_chart = {{chart_regress|safe}}
+    var regress_series = {{regress_series|safe}}
 
 </script>
 <script src="../static/js/scatter.js"></script>
 <script src="../static/js/line.js"></script>
 <script src="../static/js/stackarea.js"></script>
-<script src="../static/js/text.js"></script>
+<script src="../static/js/regress.js"></script>
 
 {% include "partials/footer.html" %}
 {% endblock %}	

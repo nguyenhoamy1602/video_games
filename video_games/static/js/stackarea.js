@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $(chart_2).highcharts({
+    $(region_chart).highcharts({
         chart: {
             type: 'area',
             zoomType:'xy'
@@ -40,6 +40,6 @@ $(document).ready(function() {
             }
         }
     },
-     series: series2
+     series: region_series
  });
 });
