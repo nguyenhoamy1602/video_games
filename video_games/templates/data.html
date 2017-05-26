@@ -4,7 +4,7 @@
 <section class="content-6">
   <div>
     <div class="container">
-      <h3><img src="{{ url_for('static', filename='img/storage.png') }}" width="100" height="100" alt=""> Data Explorer </h3>
+      <h3><img src="{{ url_for('static', filename='../static/img/storage.jpg') }}" width="100" height="100" alt=""> Data Explorer </h3>
       <p class="lead">List of all securities in database</p>
       <div class="row features">
         <div class="col-sm-12">
@@ -24,20 +24,20 @@
               <th class="right">Global Sales</th>
             </thead>
             <tbody>
-              {% for videogame in videogames %}
+              {% for index, rows in videogames.iterrows() %}
               <tr>
-                <td>{{ videogame['Rank']}}</td>
-                <td>{{ videogame['Name']}}</td>
-                <td>{{ videogame['Platform'] }}</td>
-                <td>{{ videogame['Year'] }}</td>
-
-                <td class="right">{{ videogame['Genre'] }}</td>
-                <td class="right">{{ videogame['Publisher'] }}</td>
-                <td class="right">{{ videogame['NA_Sales'] }}</td>
-                <td class="right">{{ videogame['EU_Sales'] }}</td>
-                <td class="right">{{ videogame['Japan_Sales'] }}</td>
-                <td class="right">{{ videogame['Other_Sales'] }}</td>
-                <td class="right">{{ videogame['Global_Sales'] }}</td>
+                <td>{{rows['Rank']}}</td>
+                <td>{{rows['Name'].decode('utf-8')}}</td>
+                <td>{{rows['Platform']}}</td>
+                <td>{{rows['Year']}}</td>
+        
+                <td class="right">{{ rows['Genre'] }}</td>
+                <td class="right">{{ rows['Publisher'] }}</td>
+                <td class="right">{{ rows['NA_Sales'] }}</td>
+                <td class="right">{{ rows['EU_Sales'] }}</td>
+                <td class="right">{{ rows['Japan_Sales'] }}</td>
+                <td class="right">{{ rows['Other_Sales'] }}</td>
+                <td class="right">{{ rows['Global_Sales'] }}</td>
               </tr>
               {% endfor %}
             </tbody>

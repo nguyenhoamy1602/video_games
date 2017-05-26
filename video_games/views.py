@@ -30,7 +30,8 @@ def index():
 
 @app.route("/data")
 def data():
-    videogames = database.execute_query("""SELECT * FROM videogame""")
+    #videogames = database.execute_query("""SELECT * FROM videogame""")
+    videogames = df;
     return render_template("data.html", videogames=videogames)
 
 @app.route('/form')
