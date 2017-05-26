@@ -98,7 +98,7 @@ def visual():
     chartID_1 = 'chartID_1'
     series1 = chart.combined(df)
     chartID_2 = 'chartID_2'
-    year,series2 = chart.stack(df)
+    year,series2 = chart.area(df)
     chartID_3 = 'chart_ID_3'
     series3 = chart.scatter_data(df[:1001])
 

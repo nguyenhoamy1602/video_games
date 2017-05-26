@@ -10,9 +10,12 @@ Application Content:
 
 
 To run:
+- Ensure you have installed the required packages: flask, pandas and numpy
 - Open command prompt, go to our project directory "cd video_games" 
 - "python run.py" 
 - Click on the localhost link produced
+
+Note: Our application reference external resources from Bootstrap and Highcharts so you need a working Internet connection. You might also want to "Inspect" the page to see if the CSS is running normally. Chrome might block access to the resource page.
 
 
 Our Application:
