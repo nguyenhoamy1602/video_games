@@ -61,7 +61,7 @@ GB has the highest average sales. <br>
 <div class = "col-md-6">
 </div>
 <div class="col-md-6">  
-    
+    <div class = "chart", id="{{chartID_4|safe}}"></div>
 </div>
 </div>
     
@@ -90,11 +90,14 @@ Its sales is closely related to the Global Sales. <br>
     var chart_3 = {{ chartID_3|safe }}
     var series3 = {{ series3|safe }}
 
+    var chart_4 = {{chartID_4|safe}}
+    var series4 = {{series4|safe}}
+
 </script>
-<script src="../static/js/text.js"></script>
 <script src="../static/js/scatter.js"></script>
 <script src="../static/js/line.js"></script>
 <script src="../static/js/stackarea.js"></script>
+<script src="../static/js/text.js"></script>
 
 {% include "partials/footer.html" %}
 {% endblock %}	

@@ -15,7 +15,7 @@ import json
 
 from video_games import app, convert, chart
 
-df = pd.read_csv('Data/vgsales.csv')
+df = pd.read_csv('Data/vgsales.csv').dropna()
 
 aggFunctions = {'count':np.count_nonzero, 'sum':np.sum, 'avg':np.mean,
             'min':np.min, 'max':np.max, 'med':np.median}
@@ -101,10 +101,12 @@ def visual():
     year,series2 = chart.area(df)
     chartID_3 = 'chart_ID_3'
     series3 = chart.scatter_data(df[:1001])
+    chartID_4 = 'chart_ID_4'
+    series4 = chart.scatter_regress(df)
 
     return render_template('visualisation.html', chartID_1=chartID_1, series1=series1,
         chartID_2=chartID_2, year=year, series2=series2, 
-        series3=series3, chartID_3=chartID_3)
+        series3=series3, chartID_3=chartID_3, chartID_4=chartID_4, series4=series4)
 
 
 

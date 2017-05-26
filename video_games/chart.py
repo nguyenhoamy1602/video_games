@@ -1,12 +1,13 @@
 # Functions to get data for Highcharts
 import pandas as pd
+from scipy import stats
 
 aggFunc = ['count', 'sum', 'mean']
 categories = ["Genre", "Publisher", "Platform", "Year"]
 
-def year_data(df):
+def category_data(df, category):
     """Get Global Sales count, sum and mean according to Year into a list"""
-    data = df.groupby("Year").agg({'Global_Sales': aggFunc}).round(2)
+    data = df.groupby(category).agg({'Global_Sales': aggFunc}).round(2)
 
     # turn data into list
     dataset = data.values.T.tolist()
@@ -56,11 +57,29 @@ def combined(df):
     combined_data = {}
     for i in categories:
         if i == 'Year':
-            combined_data['Year'] = year_data(df)
+            combined_data['Year'] = category_data(df, i)
         else:
             dataset = top_performer(df, i)[1]
             combined_data[i] = dataset
     return combined_data 
+
+def scatter_regress(df):
+    data = {}
+    for i in categories:
+        data[i] = category_data(df, i)
+        regress = stats.mstats.linregress(data[i][1], data[i][2])
+        m = regress[0]
+        c = regress[1]
+        data[i] = [list(a) for a in zip(data[i][1], data[i][2],data[i][0])]
+        mini = min(data[i])
+        maxi = max(data[i])
+        regress_data = []
+        for u in [mini,maxi]:        
+            regress_data.append([u[0],m*u[0]+c])
+        data[i] = [regress_data,data[i]]
+    return data
+
+
 
 def area(df):
     """Get data for area chart - regional sales"""
@@ -102,8 +121,6 @@ def scatter_data(df):
     for i in categories:
         scatter_data[i] = list(scatter(df, i))
     return scatter_data
-
-
 
 
 def bubble_chart(df):

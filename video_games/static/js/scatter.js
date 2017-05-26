@@ -11,7 +11,13 @@ var scatter_options = {
                 text: 'Source: vgsales'
             },
         xAxis: {
-                categories: series3['Year'][0]
+                categories: series3['Year'][0],
+                tickPositioner: function() {
+                var result = [];
+                for(i = 0; i < series3['Year'][0].length; i++)
+                    result.push(i);
+                return result;
+                }
             },
         yAxis: {"title": {"text": 'Unit Sales (million)'}},
         tooltip: {
@@ -52,7 +58,7 @@ $('#travel-select').on('change', function(){
     //alert('f')
     var data_option = $('#travel-select').val();
     scatter_options.series = series3[data_option][1];
-    scatter_options.title.text = 'Top 1000 Games Sales According to' + data_option;
+    scatter_options.title.text = 'Top 1000 Games Sales According to ' + data_option;
     scatter_options.xAxis.categories = series3[data_option][0];
     var chart = new Highcharts.Chart(scatter_options);    
 });

@@ -1,5 +1,3 @@
-var text = "text";
-
 $(document).ready(function() {
     $(chart_1).highcharts({
         chart: {
@@ -13,7 +11,7 @@ $(document).ready(function() {
         },
         xAxis: [{
             categories: series1['Year'][0],
-            crosshair: true
+            crosshair: true,
         }],
     yAxis: [{ // Primary yAxis
         labels: {
