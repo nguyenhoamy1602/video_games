@@ -10,7 +10,7 @@ Application Content:
 
 
 To run:
-- Ensure you have installed the required packages: flask, pandas and numpy
+- Ensure you have installed Python and the required packages: flask, pandas and numpy
 - Open command prompt, go to our project directory "cd video_games" 
 - "python run.py" 
 - Click on the localhost link produced
