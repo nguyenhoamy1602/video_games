@@ -54,9 +54,9 @@ var scatter_options = {
 };
 var chart = new Highcharts.Chart(scatter_options);
 
-$('#travel-select').on('change', function(){
+$('#category-select').on('change', function(){
     //alert('f')
-    var data_option = $('#travel-select').val();
+    var data_option = $('#category-select').val();
     scatter_options.series = scatter_series[data_option][1];
     scatter_options.title.text = 'Top 1000 Global Games Sales According to ' + data_option;
     scatter_options.xAxis.categories = scatter_series[data_option][0];

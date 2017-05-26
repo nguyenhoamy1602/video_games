@@ -19,10 +19,11 @@
         <img src="../static/img/cloud.png" height=200px width=200px style="position:relative;right:50px;transform:scaleX(-1)">
     </div>
 </div>
+
 <div class="row row-centered"> 
     <div class = "col-md-6 col-centered">
         <div align="center" style="padding-bottom: 20px;">
-            <select id="travel-select">
+            <select id="category-select">
                 <option value="Year">Year</option>
                 <option value="Genre">Genre</option>
                 <option value="Publisher">Publisher</option>
@@ -53,18 +54,17 @@
         <p> Zoom in or Hover to find out more </p>
     </div>
 </div>
+
 <div class="row">
     <div class="col-md-4 col-xs-12">
         <div class = "chart", id="{{chart_agg|safe}}"></div>
     </div>
     <div class="col-md-4 col-xs-12">
-
         <div class = "chart", id="{{chart_regress|safe}}"></div>
     </div>
     <div class="col-md-4 col-xs-12">  
         <div class = "chart", id="{{chart_scatter|safe}}"></div>
     </div>
-</div>
 </div>
 
 <div class="row row-centered"> 
@@ -75,6 +75,7 @@
         </p>
     </div>
 </div>
+
 <div class="row row-centered">
     <div class="col-md-6 col-centered">   
         <div class = "chart", id="{{chart_region|safe}}"></div>
@@ -82,17 +83,15 @@
 </div>
 
 <div class="row" style="padding-top: 50px">
-    <div class="col-md-2">
-    </div>
+    <div class="col-md-2"></div>
     <div class="col-md-8">
         <div style="text-align:center"> 
         <a type="button" href="{{ url_for('bubble') }}" class="btn-default btn-lg">See Our Bubble Chart</a>
         </div>
     </div>
-    <div class="col-md-2">
-    </div>
+    <div class="col-md-2"></div>
 </div>
-</div>
+
 
 <script>
     var agg_chart = {{chart_agg|safe}}

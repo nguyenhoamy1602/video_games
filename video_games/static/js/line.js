@@ -98,8 +98,8 @@ $(document).ready(function() {
 });
 $('.drop-down-show-hide').hide();
 $('#Year').show();
-var data_option = $('#travel-select').val();
-    $("#travel-select").change(function () {
+var data_option = $('#category-select').val();
+    $("#category-select").change(function () {
         var data_option = $(this).val();
         var chart = $(agg_chart).highcharts();  
         var i;

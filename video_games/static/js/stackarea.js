@@ -26,20 +26,20 @@ $(document).ready(function() {
             split: true,
             valueSuffix: ' millions'
         },
-            plotOptions: {
-        area: {
-            marker: {
-                enabled: false,
-                symbol: 'circle',
-                radius: 2,
-                states: {
-                    hover: {
-                        enabled: true
+        plotOptions: {
+            area: {
+                marker: {
+                    enabled: false,
+                    symbol: 'circle',
+                    radius: 2,
+                    states: {
+                        hover: {
+                            enabled: true
+                        }
                     }
                 }
             }
-        }
-    },
-     series: region_series
- });
+        },
+        series: region_series
+    });
 });
