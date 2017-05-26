@@ -3,7 +3,7 @@
 
 Application Content:
 - The Data folder contains the data we use in our project
-- The video-games folder contains our application 
+- The video-games folder contains our application functions
 	+ Python files to process datas
 	+ The static folder contains all our css, js and img files
 	+ The templates folder contains our html files
@@ -11,7 +11,7 @@ Application Content:
 
 To run:
 - Ensure you have installed Python and the required packages: flask, pandas and numpy
-- Open command prompt, go to our project directory "cd video_games" 
+- Open command prompt, "cd video_games" to go to our project directory 
 - "python run.py" 
 - Click on the localhost link produced
 
@@ -20,7 +20,7 @@ Note: Our application reference external resources from Bootstrap and Highcharts
 
 Our Application:
 - Pivot Table - allow user to build their own pivot table
-- Visualisation - our own intepretation of the data, trying to answering the questions of the best year, publisher, platform, genre and region for a game
+- Visualisation - our own intepretation of the data, trying to answer the questions of the best year, publisher, platform, genre and region for a game
 - Bubble chart - an interactive chart for you to explore our top 1000 games according to genre
 
 Note: All our charts allow for hovering to inspect individual points, zoom in by dragging your mouse drawing a rectangle and where legend is available, you can click on the legend to inspect individual series.
