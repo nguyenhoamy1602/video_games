@@ -1,15 +1,13 @@
 {% extends "layout.html" %}
 {% block title %} Home {% endblock %}
 {% block content %}
-{% include "partials/nav.html" %}
-    <div id="home" class="tab-pane fade in active">
         <div class="row">
             <div class="col-sm-4">
                 <img style="position:relative; left:30px; top:50px;" src="../static/img/mario.png" height=400px width=400px>
             </div>
-            <div class="col-lg-4">
-                <h1 style="text-align:center; color:white;font-family:Arcade;font-size:500%">Video Game Sales</h1>
-                <h4 style="text-align:center; color:white;font-family:Arcade;font-size:200%">Throughout the ages</h4>
+            <div class="col-lg-4" style="text-align: center">
+                <h1 style="font-size:500%">Video Game Sales</h1>
+                <h4 style="font-size:200%">Throughout the ages</h4>
             </div>
             <div class="col-sm-4">
                 <img src="../static/img/block2.png" height=200px width=200px style="position:relative; top:25px; left:80px; bottom:50px;">
@@ -27,6 +25,11 @@
             <div class="col-sm-4">
             </div>
         </div>
-    </div>
+    <div class="row row-centered" style="padding-top: 50px">
+        <div class="col-md-4 col-centered">
+        <img src="../static/img/Wii-sports-logo.png">
+        </div>
+    </div>    
+
 {% include "partials/footer.html" %}
 {% endblock %}

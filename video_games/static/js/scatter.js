@@ -58,7 +58,7 @@ $('#travel-select').on('change', function(){
     //alert('f')
     var data_option = $('#travel-select').val();
     scatter_options.series = series3[data_option][1];
-    scatter_options.title.text = 'Top 1000 Games Sales According to ' + data_option;
+    scatter_options.title.text = 'Top 1000 Global Games Sales According to ' + data_option;
     scatter_options.xAxis.categories = series3[data_option][0];
     var chart = new Highcharts.Chart(scatter_options);    
 });

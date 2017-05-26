@@ -23,6 +23,8 @@ Our Application:
 - Visualisation - our own intepretation of the data, trying to answering the questions of the best year, publisher, platform, genre and region for a game
 - Bubble chart - an interactive chart for you to explore our top 1000 games according to genre
 
+Note: All our charts allow for hovering to inspect individual points, zoom in by dragging your mouse drawing a rectangle and where legend is available, you can click on the legend to inspect individual series.
+
 
 Tools:
 - Pandas - To process data for pivot table and visualisations
